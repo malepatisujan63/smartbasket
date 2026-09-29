@@ -1,0 +1,10 @@
+{
+  "trained_at": "2026-08-01T15:51:17.776384",
+  "train_logs": 488,
+  "test_logs": 123,
+  "split_strategy": "temporal_80_20",
+  "model_type": "CatBoost Global",
+  "roc_auc": null,
+  "precision": null,
+  "recall": null
+}

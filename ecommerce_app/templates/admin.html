@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartRec — Admin Dashboard</title>
+    <meta name="description" content="Admin control panel for the Smart Recommendation System.">
+    <link rel="stylesheet" href="/static/css/google_glass.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* ── Admin-specific extras ── */
+        .admin-page { max-width: 1400px; margin: 0 auto; padding: 32px 40px 80px; }
+        .admin-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; }
+        .section-title { font-size: 1.15rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin: 48px 0 16px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+
+        /* Stat grid */
+        .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 8px; }
+        .stat-card { background: var(--white); border-radius: var(--radius-md); padding: 24px; border: 1px solid var(--border); }
+        .stat-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--light); margin-bottom: 8px; }
+        .stat-number { font-size: 2.2rem; font-weight: 800; color: var(--near-black); line-height: 1; }
+        .stat-sub { font-size: 12px; color: var(--light); margin-top: 6px; }
+
+        /* A/B grid */
+        .ab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .ab-card { background: var(--white); border-radius: var(--radius-md); padding: 28px; border: 1px solid var(--border); text-align: center; }
+        .ab-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--light); margin-bottom: 12px; }
+        .ab-pct { font-size: 3rem; font-weight: 800; color: var(--near-black); }
+        .ab-sublabel { font-size: 12px; color: var(--mid); margin-top: 8px; }
+        .ab-winner-row { margin-top: 14px; font-size: 13px; color: var(--mid); }
+
+        /* Tables */
+        .model-metrics-table { width: 100%; border-collapse: collapse; background: var(--white); }
+        .model-metrics-table th { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--light); padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); background: var(--bg); }
+        .model-metrics-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--dark); vertical-align: top; }
+        .model-metrics-table tr:last-child td { border-bottom: none; }
+        .model-metrics-table tr:hover td { background: var(--bg); }
+
+        /* Badges */
+        .badge { display: inline-block; padding: 3px 10px; border-radius: var(--radius-pill); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+        .badge-yes { background: #d4edda; color: #155724; }
+        .badge-no  { background: #f8d7da; color: #721c24; }
+        .badge-good { background: #d1ecf1; color: #0c5460; }
+        .badge-warn { background: #fff3cd; color: #856404; }
+        .badge-na   { background: #e2e3e5; color: #383d41; }
+
+        /* ML Report cards */
+        .ml-report-grid { display: grid; gap: 24px; }
+        .ml-user-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        .ml-user-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+            cursor: pointer;
+            user-select: none;
+        }
+        .ml-user-card-header:hover { background: var(--bg-card); }
+        .ml-user-name { font-size: 1rem; font-weight: 700; }
+        .ml-user-meta { font-size: 12px; color: var(--mid); margin-top: 4px; }
+        .ml-card-body { padding: 24px; display: none; }
+        .ml-card-body.open { display: block; }
+
+        .ml-metrics-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px; }
+        .ml-metric-box { background: var(--bg); border-radius: var(--radius-md); padding: 16px; text-align: center; }
+        .ml-metric-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--light); font-weight: 700; margin-bottom: 6px; }
+        .ml-metric-val { font-size: 1.6rem; font-weight: 800; color: var(--near-black); }
+        .ml-metric-val.good { color: #155724; }
+        .ml-metric-val.warn { color: #856404; }
+        .ml-metric-val.bad  { color: #721c24; }
+
+        .ml-section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--light); margin: 20px 0 10px; }
+        .ml-tag { display: inline-block; background: var(--bg-card); border-radius: 6px; padding: 4px 10px; font-size: 12px; color: var(--dark); margin: 3px; }
+
+        .pipeline-flow {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin: 16px 0;
+            flex-wrap: wrap;
+        }
+        .pipe-step {
+            background: var(--near-black);
+            color: var(--white);
+            padding: 8px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+        .pipe-arrow {
+            color: var(--mid);
+            font-size: 18px;
+            margin: 0 8px;
+            font-weight: 300;
+        }
+        .trigger-bar {
+            margin: 12px 0;
+            background: var(--bg-card);
+            border-radius: var(--radius-pill);
+            height: 8px;
+            overflow: hidden;
+        }
+        .trigger-bar-fill {
+            height: 100%;
+            background: var(--near-black);
+            border-radius: var(--radius-pill);
+            transition: width 0.6s ease;
+        }
+
+        /* User modal */
+        .modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; overflow-y:auto; }
+        .modal-box { background:var(--white); margin:40px auto; max-width:900px; border-radius:var(--radius-lg); padding:40px; position:relative; }
+
+        /* Nav */
+        .nav-left { display: flex; align-items: center; gap: 16px; }
+        .dot { display:inline-block; width:7px; height:7px; background:var(--near-black); border-radius:50%; margin-left:4px; margin-bottom:2px; }
+        .text-muted { color: var(--mid); }
+        .text-small { font-size: 12px; }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="brand-title" style="cursor:pointer;" onclick="window.location.href='/home'">
+                SmartRec<span class="dot"></span>
+            </div>
+            <span class="nav-link text-muted text-small" style="cursor:default; border:none;">Admin Dashboard</span>
+        </div>
+        <div class="nav-right">
+            <div class="nav-link" onclick="window.location.href='/home'">&#8592; Back to Store</div>
+            <button class="btn btn-primary" id="refresh-ml-btn" style="padding: 10px 20px; font-size: 13px; margin-right: 10px;">
+                ↻ Refresh ML Report
+            </button>
+            <button class="btn btn-primary" id="train-ncf-btn" style="padding: 10px 20px; font-size: 13px; margin-right: 10px;">
+                Train Global NCF
+            </button>
+            <button class="btn btn-primary" id="build-vector-btn" style="padding: 10px 20px; font-size: 13px;">
+                Build FAISS Index
+            </button>
+        </div>
+    </nav>
+
+    <div class="admin-page">
+        <div class="admin-header">
+            <div>
+                <h1 style="font-size: 2rem; margin-bottom: 4px;">Control Center</h1>
+                <p class="text-muted text-small">System metrics, A/B testing results, and live ML pipeline status</p>
+            </div>
+            <div id="last-updated" class="text-muted text-small"></div>
+        </div>
+
+        <!-- Stat Cards -->
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Users</div>
+                <div class="stat-number" id="stat-users">—</div>
+                <div class="stat-sub">Registered accounts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Products</div>
+                <div class="stat-number" id="stat-products">—</div>
+                <div class="stat-sub">Items in catalog</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Interactions</div>
+                <div class="stat-number" id="stat-interactions">—</div>
+                <div class="stat-sub">Views, carts, purchases</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">A/B Winner</div>
+                <div class="stat-number" id="stat-winner" style="font-size:1.4rem;">—</div>
+                <div class="stat-sub">Based on conversion rate</div>
+            </div>
+        </div>
+
+        <!-- A/B Testing -->
+        <div class="section-title">A/B Testing — ML vs Trending</div>
+        <p class="text-muted text-small" style="margin-bottom: 20px;">
+            Conversion Rate = (Cart + Purchase Events) / Total Interactions per group
+        </p>
+        <div class="ab-grid">
+            <div class="ab-card">
+                <div class="ab-label">Group A — Machine Learning</div>
+                <div class="ab-pct" id="ab-group-a">0%</div>
+                <div class="ab-sublabel">ML-powered personalized feed (users with ≥20 logs)</div>
+            </div>
+            <div class="ab-card">
+                <div class="ab-label">Group B — Baseline Trending</div>
+                <div class="ab-pct" id="ab-group-b">0%</div>
+                <div class="ab-sublabel">Global bestseller feed (control group)</div>
+            </div>
+        </div>
+        <div class="ab-winner-row">
+            Current winner: <strong id="ab-winner">Loading…</strong>
+        </div>
+
+        <!-- User Directory -->
+        <div class="section-title">User Directory</div>
+        <p class="text-muted text-small" style="margin-bottom: 20px;">
+            Click <strong>View</strong> to see full profile, ML metrics, orders, basket, and reviews.
+        </p>
+        <div style="border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;">
+            <table class="model-metrics-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>A/B Group</th>
+                        <th>Role</th>
+                        <th>Total Interactions</th>
+                        <th>Orders</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="users-directory-body">
+                    <tr><td colspan="7" style="text-align:center;">Loading users...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ════ ML Pipeline Report ════ -->
+        <div class="section-title">ML Pipeline Report — Per User (Daily)</div>
+        <p class="text-muted text-small" style="margin-bottom: 24px;">
+            Shows how each user's model is trained, what features are used, current accuracy, and next retrain status.
+            Click any user card to expand.
+        </p>
+
+        <!-- Pipeline flow explanation -->
+        <div style="background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px 24px; margin-bottom: 28px;">
+            <div class="ml-section-label">How the ML Pipeline Works (Every Search / Browse)</div>
+            <div class="pipeline-flow">
+                <div class="pipe-step">User browses / searches</div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-step">log_action API called</div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-step">Action saved to UserLogs DB</div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-step">Background task checks: 20 new logs?</div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-step">CatBoost retrains (300 iterations)</div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-step">Model saved to .cbm file</div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-step">Next request uses new model</div>
+            </div>
+            <div class="ml-section-label" style="margin-top: 16px;">What Gets Passed to the ML Model on Each Ranking Request</div>
+            <div>
+                <span class="ml-tag">brand (title word 1)</span>
+                <span class="ml-tag">price (₹)</span>
+                <span class="ml-tag">stars (avg rating)</span>
+                <span class="ml-tag">reviews (count)</span>
+                <span class="ml-tag">category_name</span>
+                <span class="ml-tag">isBestSeller (0/1)</span>
+                <span class="ml-tag">text_features (title → CatBoost tokeniser)</span>
+                <span class="ml-tag">EAV product features (if available)</span>
+            </div>
+            <div class="ml-section-label" style="margin-top: 16px;">Evaluation Method</div>
+            <div style="font-size: 13px; color: var(--mid); line-height: 1.8;">
+                Temporal 80/20 split (first 80% logs = train, last 20% = test — no future data leakage).
+                Metrics: <strong>ROC-AUC</strong> (ranking quality) · <strong>Precision</strong> (positive prediction accuracy) ·
+                <strong>Recall</strong> (how many positives caught) · <strong>F1</strong> (harmonic mean).
+                Threshold is auto-tuned to maximise F1 on the precision-recall curve (not hardcoded 0.5).
+            </div>
+        </div>
+
+        <div class="ml-report-grid" id="ml-report-container">
+            <div style="text-align:center; padding: 40px; color: var(--mid);">Loading ML report…</div>
+        </div>
+    </div>
+
+    <!-- User Details Modal -->
+    <div id="user-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button onclick="document.getElementById('user-modal').style.display='none'"
+                    style="position:absolute; top:20px; right:20px; background:transparent; border:none; font-size:24px; cursor:pointer;">
+                &times;
+            </button>
+            <h2 id="modal-username" style="font-size: 2rem; margin-bottom: 20px;">User Details</h2>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px;">
+                <div>
+                    <h3 style="margin-bottom:12px; font-size:1.1rem; border-bottom:1px solid var(--border); padding-bottom:8px;">ML Metrics</h3>
+                    <pre id="modal-ml-metrics" style="background:#f4f4f4; padding:16px; border-radius:var(--radius-sm); font-size:12px; overflow-x:auto; margin-bottom:24px;"></pre>
+                    <h3 style="margin-bottom:12px; font-size:1.1rem; border-bottom:1px solid var(--border); padding-bottom:8px;">Current Basket</h3>
+                    <div id="modal-basket" style="max-height:200px; overflow-y:auto; font-size:13px; margin-bottom:24px;"></div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom:12px; font-size:1.1rem; border-bottom:1px solid var(--border); padding-bottom:8px;">Most Viewed Items</h3>
+                    <div id="modal-most-viewed" style="max-height:200px; overflow-y:auto; font-size:13px; margin-bottom:24px;"></div>
+                    <h3 style="margin-bottom:12px; font-size:1.1rem; border-bottom:1px solid var(--border); padding-bottom:8px;">Orders</h3>
+                    <div id="modal-orders" style="max-height:200px; overflow-y:auto; font-size:13px; margin-bottom:24px;"></div>
+                    <h3 style="margin-bottom:12px; font-size:1.1rem; border-bottom:1px solid var(--border); padding-bottom:8px;">Reviews</h3>
+                    <div id="modal-reviews" style="max-height:200px; overflow-y:auto; font-size:13px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="footer-links">
+            <a href="/home">Store</a>
+            <a href="#">Admin Settings</a>
+        </div>
+        <p>© 2026 SmartRec Admin.</p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        document.getElementById('last-updated').textContent =
+            'Last refreshed: ' + new Date().toLocaleTimeString();
+
+        // ── Helper: metric colour ──────────────────────────────────────
+        function metricClass(val, metric) {
+            if (val === null || val === undefined || val === 'N/A') return '';
+            const n = parseFloat(val);
+            if (isNaN(n)) return '';
+            if (metric === 'auc') return n >= 0.8 ? 'good' : n >= 0.6 ? 'warn' : 'bad';
+            if (metric === 'f1')  return n >= 0.4 ? 'good' : n >= 0.1 ? 'warn' : 'bad';
+            if (metric === 'prec' || metric === 'rec') return n >= 0.3 ? 'good' : n > 0 ? 'warn' : 'bad';
+            return '';
+        }
+
+        function fmtVal(v) {
+            if (v === null || v === undefined) return 'N/A';
+            if (typeof v === 'number') return v.toFixed ? v.toFixed(4) : v;
+            return v;
+        }
+
+        // ── Overall stats ─────────────────────────────────────────────
+        try {
+            const res = await fetch('/api/admin/stats');
+            const data = await res.json();
+            document.getElementById('stat-users').textContent = data.users.total.toLocaleString();
+            document.getElementById('stat-products').textContent = data.catalog.total_products.toLocaleString();
+            document.getElementById('stat-interactions').textContent = data.catalog.total_interactions.toLocaleString();
+            document.getElementById('ab-group-a').textContent = data.ab_testing.group_a_conversion_pct + '%';
+            document.getElementById('ab-group-b').textContent = data.ab_testing.group_b_conversion_pct + '%';
+            document.getElementById('ab-winner').textContent = data.ab_testing.winner;
+            document.getElementById('stat-winner').textContent = data.ab_testing.winner;
+        } catch (e) { console.error('Stats load failed', e); }
+
+        // ── User Directory ────────────────────────────────────────────
+        try {
+            const res2 = await fetch('/api/admin/users');
+            const data2 = await res2.json();
+            const tbody = document.getElementById('users-directory-body');
+            tbody.innerHTML = '';
+            (data2.users || []).forEach(u => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${u.user_id}</td>
+                    <td><strong>${u.username}</strong></td>
+                    <td>${u.ab_group}</td>
+                    <td>${u.is_admin
+                        ? '<span class="badge badge-yes">Admin</span>'
+                        : '<span class="badge badge-no">User</span>'}</td>
+                    <td>${u.logs.toLocaleString()}</td>
+                    <td>${u.orders.toLocaleString()}</td>
+                    <td><button class="btn btn-primary"
+                            style="font-size:11px; padding:4px 10px;"
+                            onclick="openUserModal(${u.user_id})">View</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        } catch (e) {
+            document.getElementById('users-directory-body').innerHTML =
+                '<tr><td colspan="7" style="color:var(--mid);">Failed to load users.</td></tr>';
+        }
+
+        // ── ML Pipeline Report ────────────────────────────────────────
+        async function loadMLReport() {
+            const container = document.getElementById('ml-report-container');
+            container.innerHTML = '<div style="text-align:center; padding:40px; color:var(--mid);">Loading ML report…</div>';
+            try {
+                const res = await fetch('/api/admin/ml_report');
+                const data = await res.json();
+                container.innerHTML = '';
+
+                if (!data.report || data.report.length === 0) {
+                    container.innerHTML = '<p style="color:var(--mid);">No users found.</p>';
+                    return;
+                }
+
+                data.report.forEach((u, idx) => {
+                    const m = u.metrics || {};
+                    const auc   = fmtVal(m.roc_auc);
+                    const prec  = fmtVal(m.precision);
+                    const rec   = fmtVal(m.recall);
+                    const f1    = fmtVal(m.f1_score);
+                    const thr   = fmtVal(m.optimal_threshold);
+                    const spw   = fmtVal(m.scale_pos_weight);
+                    const trainedAt = m.trained_at ? new Date(m.trained_at).toLocaleString() : 'Never';
+
+                    // Retrain progress bar
+                    const progress = u.global_model_trained
+                        ? Math.min(100, Math.round((u.logs_since_last_train / 20) * 100))
+                        : Math.min(100, Math.round((u.total_logs / 20) * 100));
+
+                    // Status badge
+                    let statusBadge = '';
+                    const ts = u.trigger_status || '';
+                    if (ts.startsWith('WAITING')) statusBadge = '<span class="badge badge-warn">Waiting</span>';
+                    else if (ts.startsWith('READY'))  statusBadge = '<span class="badge badge-yes">Ready to Retrain</span>';
+                    else                               statusBadge = '<span class="badge badge-good">Stable</span>';
+
+                    const card = document.createElement('div');
+                    card.className = 'ml-user-card';
+                    card.innerHTML = `
+                        <div class="ml-user-card-header" onclick="toggleCard('mlcard-${idx}')">
+                            <div>
+                                <div class="ml-user-name">
+                                    User ${u.user_id} — ${u.username}
+                                    ${u.is_admin ? '<span class="badge badge-yes" style="margin-left:8px;">Admin</span>' : ''}
+                                </div>
+                                <div class="ml-user-meta">
+                                    Group ${u.ab_group} &nbsp;·&nbsp;
+                                    ${u.total_logs.toLocaleString()} total interactions &nbsp;·&nbsp;
+                                    ${u.daily_activity.total_24h} today &nbsp;·&nbsp;
+                                    Global model: ${u.global_model_trained ? '✓ Trained' : '✗ Not trained'} &nbsp;·&nbsp;
+                                    Local models: ${u.local_models.length}
+                                </div>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:12px;">
+                                ${statusBadge}
+                                <span style="font-size:20px; color:var(--mid);" id="chevron-${idx}">▾</span>
+                            </div>
+                        </div>
+                        <div class="ml-card-body" id="mlcard-${idx}">
+
+                            <!-- Accuracy Metrics -->
+                            <div class="ml-section-label">Model Accuracy Metrics</div>
+                            <div class="ml-metrics-row">
+                                <div class="ml-metric-box">
+                                    <div class="ml-metric-label">ROC-AUC</div>
+                                    <div class="ml-metric-val ${metricClass(m.roc_auc,'auc')}">${auc}</div>
+                                </div>
+                                <div class="ml-metric-box">
+                                    <div class="ml-metric-label">Precision</div>
+                                    <div class="ml-metric-val ${metricClass(m.precision,'prec')}">${prec}</div>
+                                </div>
+                                <div class="ml-metric-box">
+                                    <div class="ml-metric-label">Recall</div>
+                                    <div class="ml-metric-val ${metricClass(m.recall,'rec')}">${rec}</div>
+                                </div>
+                                <div class="ml-metric-box">
+                                    <div class="ml-metric-label">F1 Score</div>
+                                    <div class="ml-metric-val ${metricClass(m.f1_score,'f1')}">${f1}</div>
+                                </div>
+                                <div class="ml-metric-box">
+                                    <div class="ml-metric-label">Threshold</div>
+                                    <div class="ml-metric-val">${thr}</div>
+                                </div>
+                            </div>
+                            <div style="font-size:12px; color:var(--mid); margin-bottom:20px;">
+                                scale_pos_weight: <strong>${spw}</strong> &nbsp;·&nbsp;
+                                Last trained: <strong>${trainedAt}</strong> &nbsp;·&nbsp;
+                                Train logs: <strong>${m.train_logs ?? 'N/A'}</strong> &nbsp;·&nbsp;
+                                Test logs: <strong>${m.test_logs ?? 'N/A'}</strong> &nbsp;·&nbsp;
+                                Split: <strong>${u.training_split}</strong>
+                            </div>
+
+                            <!-- Daily Activity -->
+                            <div class="ml-section-label">Today's Activity (Last 24 Hours)</div>
+                            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px;">
+                                <div class="ml-metric-box">
+                                    <div class="ml-metric-label">Total</div>
+                                    <div class="ml-metric-val" style="font-size:1.4rem;">${u.daily_activity.total_24h}</div>
+                                </div>
+                                <div class="ml-metric-box">
+                                    <div class="ml-metric-label">Views</div>
+                                    <div class="ml-metric-val" style="font-size:1.4rem;">${u.daily_activity.views_24h}</div>
+                                </div>
+                                <div class="ml-metric-box">
+                                    <div class="ml-metric-label">Cart Adds</div>
+                                    <div class="ml-metric-val" style="font-size:1.4rem;">${u.daily_activity.cart_24h}</div>
+                                </div>
+                                <div class="ml-metric-box">
+                                    <div class="ml-metric-label">Purchases</div>
+                                    <div class="ml-metric-val" style="font-size:1.4rem;">${u.daily_activity.purchases_24h}</div>
+                                </div>
+                            </div>
+
+                            <!-- All-time breakdown -->
+                            <div class="ml-section-label">All-Time Interaction Breakdown</div>
+                            <div style="font-size:13px; color:var(--dark); margin-bottom:20px;">
+                                Views: <strong>${u.action_breakdown.views.toLocaleString()}</strong> &nbsp;&nbsp;
+                                Cart: <strong>${u.action_breakdown.cart.toLocaleString()}</strong> &nbsp;&nbsp;
+                                Purchases: <strong>${u.action_breakdown.purchases.toLocaleString()}</strong> &nbsp;&nbsp;
+                                Total: <strong>${u.total_logs.toLocaleString()}</strong>
+                            </div>
+
+                            <!-- Retrain trigger -->
+                            <div class="ml-section-label">Auto-Retrain Status</div>
+                            <div style="margin-bottom:8px; font-size:13px; color:var(--dark);">${u.trigger_status}</div>
+                            <div class="trigger-bar">
+                                <div class="trigger-bar-fill" style="width:${progress}%"></div>
+                            </div>
+                            <div style="font-size:11px; color:var(--light); margin-top:4px; margin-bottom:20px;">
+                                ${u.logs_since_last_train} / 20 new logs towards next retrain
+                                ${u.next_retrain_in_logs > 0 ? '(' + u.next_retrain_in_logs + ' more needed)' : '(retraining on next log)'}
+                            </div>
+
+                            <!-- Top categories & searches -->
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:20px;">
+                                <div>
+                                    <div class="ml-section-label">Top Categories Browsed</div>
+                                    ${u.top_categories.length > 0
+                                        ? u.top_categories.map(c =>
+                                            `<div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid var(--border);">
+                                                <span>${c.category}</span>
+                                                <strong>${c.interactions}</strong>
+                                            </div>`).join('')
+                                        : '<div style="font-size:13px;color:var(--mid);">No data</div>'}
+                                </div>
+                                <div>
+                                    <div class="ml-section-label">Recent Search Queries</div>
+                                    ${u.recent_searches.length > 0
+                                        ? u.recent_searches.map(s =>
+                                            `<div style="font-size:13px;padding:6px 0;border-bottom:1px solid var(--border);">"${s}"</div>`).join('')
+                                        : '<div style="font-size:13px;color:var(--mid);">No searches recorded</div>'}
+                                </div>
+                            </div>
+
+                            <!-- Local models -->
+                            <div class="ml-section-label">Local Category Models</div>
+                            ${u.local_models.length > 0
+                                ? `<div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;">
+                                    ${u.local_models.map(lm =>
+                                        `<span class="ml-tag">${lm.category} (${lm.size_kb} KB)</span>`).join('')}
+                                   </div>`
+                                : '<div style="font-size:13px;color:var(--mid);margin-bottom:20px;">No local models — need ≥10 logs per category</div>'}
+
+                            <!-- Feature inputs -->
+                            <div class="ml-section-label">Features Passed to Model on Every Ranking Request</div>
+                            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                                ${u.feature_inputs.map(f => `<span class="ml-tag">${f}</span>`).join('')}
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+
+                document.getElementById('last-updated').textContent =
+                    'Last refreshed: ' + new Date().toLocaleTimeString();
+
+            } catch (e) {
+                container.innerHTML = '<p style="color:red; padding:20px;">Failed to load ML report: ' + e.message + '</p>';
+                console.error(e);
+            }
+        }
+
+        window.toggleCard = function(id) {
+            const body = document.getElementById(id);
+            const idx = id.replace('mlcard-', '');
+            const chevron = document.getElementById('chevron-' + idx);
+            if (body.classList.contains('open')) {
+                body.classList.remove('open');
+                if (chevron) chevron.textContent = '▾';
+            } else {
+                body.classList.add('open');
+                if (chevron) chevron.textContent = '▴';
+            }
+        };
+
+        loadMLReport();
+
+        document.getElementById('refresh-ml-btn').addEventListener('click', loadMLReport);
+
+        // ── User modal ────────────────────────────────────────────────
+        window.openUserModal = async function(userId) {
+            const modal = document.getElementById('user-modal');
+            modal.style.display = 'block';
+            document.getElementById('modal-username').textContent = 'Loading...';
+            document.getElementById('modal-ml-metrics').textContent = 'Loading...';
+            ['modal-basket','modal-most-viewed','modal-orders','modal-reviews']
+                .forEach(id => document.getElementById(id).innerHTML = '');
+
+            try {
+                const res = await fetch('/api/admin/user/' + userId);
+                const user = await res.json();
+                document.getElementById('modal-username').textContent = 'User Details: ' + user.username;
+                document.getElementById('modal-ml-metrics').textContent =
+                    user.metrics ? JSON.stringify(user.metrics, null, 2) : 'Model not trained yet.';
+
+                const renderItems = (items, containerId, renderFn, emptyMsg) => {
+                    const el = document.getElementById(containerId);
+                    el.innerHTML = (items && items.length > 0) ? items.map(renderFn).join('') : `<span style="color:var(--mid);font-size:13px;">${emptyMsg}</span>`;
+                };
+                const itemRow = (img, title, sub) => `
+                    <div style="display:flex;gap:10px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:10px;">
+                        <img src="${img}" onerror="this.src='https://via.placeholder.com/50'" style="width:40px;height:40px;object-fit:contain;">
+                        <div><div style="font-weight:600;font-size:13px;">${title}</div><div style="font-size:12px;color:var(--mid);">${sub}</div></div>
+                    </div>`;
+
+                renderItems(user.basket, 'modal-basket',
+                    p => itemRow(p.imgUrl, p.title, `Qty: ${p.quantity} | ₹${(parseFloat(p.price)*83).toFixed(0)}`),
+                    'Cart is empty.');
+                renderItems(user.most_viewed, 'modal-most-viewed',
+                    p => itemRow(p.imgUrl, p.title, `${p.views} views | ₹${(parseFloat(p.price)*83).toFixed(0)}`),
+                    'No views recorded.');
+                renderItems(user.orders, 'modal-orders',
+                    o => itemRow(o.imgUrl, o.title, `Ordered: ${new Date(o.timestamp).toLocaleDateString()} | ₹${(parseFloat(o.price)*83).toFixed(0)}`),
+                    'No orders found.');
+                renderItems(user.reviews, 'modal-reviews',
+                    r => `<div style="margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:10px;">
+                            <div style="font-weight:600;font-size:13px;">${r.title}</div>
+                            <div style="font-size:12px;">Rating: ${r.rating} ★</div>
+                            <div style="font-size:12px;color:var(--mid);">${r.comment}</div>
+                          </div>`,
+                    'No reviews written.');
+            } catch (e) {
+                document.getElementById('modal-username').textContent = 'Error loading user data.';
+            }
+        };
+
+        // ── Buttons ───────────────────────────────────────────────────
+        document.getElementById('train-ncf-btn').addEventListener('click', async (e) => {
+            e.target.disabled = true;
+            e.target.textContent = 'Training NCF…';
+            try {
+                const res = await fetch('/api/admin/train_ncf', { method: 'POST' });
+                const data = await res.json();
+                if (window.showToast) window.showToast(data.message || 'NCF Training triggered', 'info');
+            } catch (err) {
+                if (window.showToast) window.showToast('Failed to trigger NCF training.', 'error');
+            } finally {
+                setTimeout(() => { e.target.disabled = false; e.target.textContent = 'Train Global NCF'; }, 3000);
+            }
+        });
+
+        document.getElementById('build-vector-btn').addEventListener('click', async (e) => {
+            e.target.disabled = true;
+            e.target.textContent = 'Building FAISS…';
+            try {
+                const res = await fetch('/api/admin/build_faiss_index', { method: 'POST' });
+                const data = await res.json();
+                if (window.showToast) window.showToast(data.message || 'Index build triggered', 'info');
+            } catch (err) {
+                if (window.showToast) window.showToast('Failed to trigger build.', 'error');
+            } finally {
+                setTimeout(() => { e.target.disabled = false; e.target.textContent = 'Build FAISS Index'; }, 3000);
+            }
+        });
+    });
+    </script>
+</body>
+</html>

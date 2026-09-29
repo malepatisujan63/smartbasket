@@ -1,0 +1,45 @@
+{
+  "user_id": 1,
+  "completed_at": "2026-09-12T09:56:21.844393+00:00",
+  "best_catboost_f1": 0.9405,
+  "best_catboost_auc": 0.9872,
+  "best_ncf_bce_loss": 0.5899,
+  "progression": [
+    {
+      "round": 1,
+      "name": "Baseline Reinforcement",
+      "accuracy": 0.9563,
+      "precision": 0.9962,
+      "recall": 0.8908,
+      "f1_score": 0.9405,
+      "roc_auc": 0.9872,
+      "tau": 0.9455
+    },
+    {
+      "round": 2,
+      "name": "Nonlinear Engineering",
+      "accuracy": 0.9557,
+      "precision": 0.9933,
+      "recall": 0.8917,
+      "f1_score": 0.9397,
+      "roc_auc": 0.9872,
+      "tau": 0.8644
+    },
+    {
+      "round": 3,
+      "name": "Hyperparameter Sweep",
+      "accuracy": 0.9557,
+      "precision": 0.9933,
+      "recall": 0.8917,
+      "f1_score": 0.9397,
+      "roc_auc": 0.9871,
+      "tau": 0.8552
+    },
+    {
+      "round": 4,
+      "name": "NCF Cosine Annealing",
+      "bce_loss": 0.5899,
+      "epochs": 5
+    }
+  ]
+}

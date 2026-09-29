@@ -1,0 +1,58 @@
+{
+  "benchmark_timestamp": "2026-09-12T08:35:00.287435+00:00",
+  "total_runtime_seconds": 3731.9,
+  "benchmark_user_id": 11,
+  "total_database_logs_for_user": 9000000,
+  "model_results": {
+    "catboost": {
+      "model": "CatBoost Personalized Re-ranker",
+      "type": "Supervised GBDT with Text & Categorical Embeddings",
+      "training_time_sec": 3711.18,
+      "train_samples": 80000,
+      "test_samples": 20000,
+      "roc_auc": 0.6798,
+      "log_loss": 0.6172,
+      "optimal_threshold": 0.2028,
+      "precision": 0.7548,
+      "recall": 0.9881,
+      "f1_score": 0.8559,
+      "scale_pos_weight": 0.37
+    },
+    "ncf": {
+      "model": "Neural Collaborative Filtering (NCF / NeuMF)",
+      "type": "Deep Learning Dual-Branch (GMF + MLP) in PyTorch",
+      "evaluated_interactions": 50,
+      "hit_rate_at_10": 0.14,
+      "ndcg_at_10": 0.0584,
+      "mean_reciprocal_rank": 0.0538
+    },
+    "faiss": {
+      "model": "FAISS Dense Semantic Vector Engine",
+      "type": "Dense SentenceTransformer (all-MiniLM-L6-v2) + IndexFlatIP",
+      "vector_dimensions": 384,
+      "indexed_catalog_size": 5000,
+      "mean_query_latency_ms": 27.84,
+      "min_latency_ms": 16.24,
+      "max_latency_ms": 112.38,
+      "mean_top1_cosine_similarity": 0.6431,
+      "mean_top5_cosine_similarity": 0.6031
+    },
+    "apriori": {
+      "model": "Apriori Association Rule Mining",
+      "type": "Frequent Itemsets & Market Basket Analysis",
+      "baskets_evaluated": 5000,
+      "rules_found": 75,
+      "mean_confidence": 0.1487,
+      "max_lift": 1.2642,
+      "mean_lift": 0.8613
+    },
+    "kmeans": {
+      "model": "TF-IDF + KMeans Subcategory Clustering",
+      "type": "Unsupervised Catalog Segmentation",
+      "clusters_k": 6,
+      "samples_clustered": 2500,
+      "silhouette_score": 0.0516,
+      "inertia": 2150.35
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "test_user_id": 17,
+  "total_test_logs": 150,
+  "global_catboost": {
+    "accuracy": 0.9333333333333333,
+    "precision": 1.0,
+    "recall": 0.7142857142857143,
+    "f1": 0.8333333333333334,
+    "roc_auc": 0.7701863354037267,
+    "optimal_threshold": 0.8998474460580137
+  },
+  "category_local_comparisons": [
+    {
+      "category": "Toys & Games",
+      "samples": 6,
+      "positives": 3,
+      "local_accuracy": 0.8333333333333334,
+      "local_auc": 1.0,
+      "global_accuracy": 1.0,
+      "global_auc": 1.0
+    },
+    {
+      "category": "Girls' Clothing",
+      "samples": 6,
+      "positives": 4,
+      "local_accuracy": 0.6666666666666666,
+      "local_auc": 0.75,
+      "global_accuracy": 1.0,
+      "global_auc": 1.0
+    },
+    {
+      "category": "Women's Handbags",
+      "samples": 6,
+      "positives": 0,
+      "local_accuracy": 1.0,
+      "local_auc": 0.5,
+      "global_accuracy": 1.0,
+      "global_auc": 0.5
+    },
+    {
+      "category": "Men's Clothing",
+      "samples": 6,
+      "positives": 0,
+      "local_accuracy": 1.0,
+      "local_auc": 0.5,
+      "global_accuracy": 0.8333333333333334,
+      "global_auc": 0.5
+    }
+  ],
+  "ncf_metrics": {
+    "hit_at_10": true,
+    "hit_at_20": true,
+    "mrr": 0.5,
+    "recommended_count": 20
+  }
+}

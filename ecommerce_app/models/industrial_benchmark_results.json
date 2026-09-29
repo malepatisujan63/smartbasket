@@ -1,0 +1,106 @@
+{
+  "benchmark_timestamp": "2026-09-12T11:00:17.396797+00:00",
+  "dataset_statistics": {
+    "total_catalog_size": 1426337,
+    "total_logs_in_database": 10110168,
+    "evaluated_sample_size": 30000,
+    "train_size": 21000,
+    "val_size": 4500,
+    "test_size": 4500
+  },
+  "methodology_1_pointwise_calibration": {
+    "roc_auc": 0.5533,
+    "pr_auc": 0.4477,
+    "log_loss": 0.659,
+    "normalized_entropy": 0.968,
+    "brier_score": 0.2366,
+    "expected_calibration_error": 0.0702,
+    "optimal_threshold_tau": 0.2667,
+    "calibration_bins": [
+      {
+        "bin": "0.0-0.1",
+        "count": 136,
+        "acc": 0.0,
+        "conf": 0.0771,
+        "gap": 0.0771
+      },
+      {
+        "bin": "0.1-0.2",
+        "count": 161,
+        "acc": 0.0,
+        "conf": 0.1138,
+        "gap": 0.1138
+      },
+      {
+        "bin": "0.2-0.3",
+        "count": 9,
+        "acc": 0.6667,
+        "conf": 0.2671,
+        "gap": 0.3995
+      },
+      {
+        "bin": "0.3-0.4",
+        "count": 42,
+        "acc": 0.4524,
+        "conf": 0.3528,
+        "gap": 0.0996
+      },
+      {
+        "bin": "0.4-0.5",
+        "count": 9,
+        "acc": 0.4444,
+        "conf": 0.4966,
+        "gap": 0.0521
+      },
+      {
+        "bin": "0.5-0.6",
+        "count": 4143,
+        "acc": 0.4511,
+        "conf": 0.5184,
+        "gap": 0.0673
+      }
+    ]
+  },
+  "methodology_2_top_k_ranking": {
+    "hr@5": 0.5,
+    "hr@10": 0.5,
+    "hr@20": 0.6667,
+    "ndcg@5": 0.377,
+    "ndcg@10": 0.377,
+    "ndcg@20": 0.4149,
+    "mrr": 0.3537,
+    "map@10": 0.3333
+  },
+  "methodology_3_beyond_accuracy": {
+    "intra_list_diversity_ild": 0.9481,
+    "catalog_gini_index": 1.0,
+    "unique_items_recommended_in_top10": 60,
+    "novelty_surprisal_bits": 11.3566
+  },
+  "methodology_4_cohorts": {
+    "Cold-Start (<= 10 logs)": {
+      "user_count": 0,
+      "strategy": "Semantic Vector (FAISS) + Apriori Popular Fallback",
+      "fallback_success_rate": 1.0,
+      "avg_latency_ms": 24.8
+    },
+    "Warm Users (11 - 1000 logs)": {
+      "user_count": 0,
+      "strategy": "Dual NeuMF Embeddings + Category CatBoost",
+      "hr@10": 0.5,
+      "ndcg@10": 0.377
+    },
+    "Power Users (> 1000 logs)": {
+      "user_count": 14,
+      "strategy": "Full GBDT Re-ranking + Personalized Category Trees",
+      "hr@10": 0.575,
+      "ndcg@10": 0.4222
+    }
+  },
+  "methodology_5_latency_sla_ms": {
+    "p50": 1.38,
+    "p90": 2.0,
+    "p95": 2.15,
+    "p99": 2.44
+  }
+}

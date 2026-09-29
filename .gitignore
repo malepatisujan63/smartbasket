@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+ecommerce_app/venv/
+
+# SQLite databases & temporary files
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# CatBoost training info and cache
+catboost_info/
+.pytest_cache/
+
+# Large datasets & raw data files (>100MB / split CSVs)
+amazon_products.csv
+categories/
+
+# Large media files
+*.mp4
+websitedemo.mp4
+
+# Log files
+*.log
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store

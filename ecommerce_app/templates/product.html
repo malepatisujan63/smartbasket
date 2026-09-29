@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartRec — Product Details</title>
+    <meta name="description" content="View detailed product information, ratings, and AI-powered recommendations.">
+    <link rel="stylesheet" href="/static/css/google_glass.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="brand-title" onclick="window.location.href='/home'" style="cursor:pointer;">SmartRec</div>
+        <nav class="nav-right">
+            <span class="nav-link" onclick="window.location.href='/home'">Shop</span>
+            <span class="nav-link cart-icon" onclick="window.location.href='/cart'" title="Cart">
+                Cart
+                <span class="cart-counter" id="cart-counter">0</span>
+            </span>
+        </nav>
+    </nav>
+
+    <div class="app-container">
+        <!-- Loading -->
+        <div id="loading" style="text-align:center; padding:80px 0;">
+            <div class="spinner" style="margin: 0 auto 16px;"></div>
+            <p style="font-size:12px; color:var(--light); text-transform:uppercase; letter-spacing:0.08em;">Loading product…</p>
+        </div>
+
+        <!-- Product Detail: Split layout -->
+        <div class="product-details-container" id="product-container" style="display:none;">
+            <!-- Image panel -->
+            <div class="detail-image-wrap">
+                <img id="p-image" class="detail-image" src="" alt="Product Image"
+                     onerror="this.src='https://via.placeholder.com/480?text=No+Image'">
+            </div>
+
+            <!-- Info panel -->
+            <div class="detail-info">
+                <div class="detail-category" id="p-category"></div>
+                <h1 class="detail-title" id="p-title"></h1>
+                <div class="detail-rating" id="p-rating"></div>
+                <p style="font-size:12px; color:var(--light);" id="p-reviews-count"></p>
+                <div class="detail-price" id="p-price"></div>
+                <div class="detail-divider"></div>
+                <p class="detail-description">
+                    From the <strong id="p-cat-inline"></strong> collection — rated highly by customers
+                    worldwide for quality, performance, and value.
+                </p>
+                <div class="detail-actions">
+                    <button class="btn btn-primary" id="btn-add-cart">Add to Cart</button>
+                    <button class="btn btn-secondary" id="btn-buy-now">Buy Now</button>
+                </div>
+
+                <!-- Customer Reviews -->
+                <div class="review-section">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                        <h3 style="margin-bottom:0;">Customer Reviews</h3>
+                        <span id="reviews-count-badge" style="font-size:12px; color:var(--mid); font-weight:600;"></span>
+                    </div>
+
+                    <!-- Write Review Box -->
+                    <div id="add-review-box" style="background:var(--bg); padding:16px 20px; border-radius:var(--radius-md); border:1px solid var(--border); margin-bottom:24px;">
+                        <h4 style="font-size:13px; font-weight:700; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.06em;">Write a Review</h4>
+                        <div style="margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+                            <label style="font-size:12px; color:var(--mid); font-weight:600;">Rating:</label>
+                            <select id="review-rating-select" class="form-control" style="width:auto; padding:4px 10px; font-size:13px;">
+                                <option value="5">★★★★★ (5 Stars - Excellent)</option>
+                                <option value="4">★★★★☆ (4 Stars - Good)</option>
+                                <option value="3">★★★☆☆ (3 Stars - Average)</option>
+                                <option value="2">★★☆☆☆ (2 Stars - Below Average)</option>
+                                <option value="1">★☆☆☆☆ (1 Star - Poor)</option>
+                            </select>
+                        </div>
+                        <textarea id="review-comment-input" class="form-control" rows="3" placeholder="Share your experience with this product…" style="margin-bottom:12px; font-size:13px;"></textarea>
+                        <button class="btn btn-primary" id="btn-submit-review" style="padding:8px 20px; font-size:12px;">
+                            Submit Review
+                        </button>
+                    </div>
+
+                    <!-- Reviews List -->
+                    <div id="real-reviews-list">
+                        <p style="color:var(--mid); font-size:13px;">Loading reviews…</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div id="recommendations-container" style="display:none; margin: 72px 0;">
+            <div class="feed-header">
+                <div class="feed-title">Customers Also Bought</div>
+            </div>
+            <div id="recs-grid" class="product-grid"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="footer-links">
+            <a href="/home">Shop</a>
+            <a href="/cart">Cart</a>
+            <a href="/admin">Admin</a>
+        </div>
+        <p>© 2026 SmartRec</p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/product.js"></script>
+</body>
+</html>
