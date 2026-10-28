@@ -1,47 +1,49 @@
-# Byte-compiled / optimized / DLL files
+# Python & Virtual Environments
 __pycache__/
 *.py[cod]
 *$py.class
-
-# Virtual environments
-venv/
+*.so
+.Python
 env/
-ENV/
-.venv/
-ecommerce_app/venv/
+venv/
+venv_linux/
+backend/venv/
+*.venv
 
-# SQLite databases & temporary files
+# Java / JDK
+OpenJDK*
+*jdk*
+
+# Node.js & Next.js
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+frontend/D:*
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# Large Data & SQLite Databases
 *.db
 *.sqlite
 *.sqlite3
-*.db-journal
-*.db-wal
-*.db-shm
+backend/retail_ai.db
+ml/datasets/real_amazon_data/*.json
+ml/datasets/real_amazon_data/reviews_Musical_Instruments_5*/
 
-# CatBoost training info and cache
-catboost_info/
-.pytest_cache/
-
-# Large datasets & raw data files (>100MB / split CSVs)
-amazon_products.csv
-categories/
-
-# Large media files
-*.mp4
-websitedemo.mp4
-
-# Log files
-*.log
-
-# IDE & Editor files
+# IDE & OS
 .vscode/
+frontend/.vscode/
 .idea/
-*.swp
-*.swo
-
-# OS generated files
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
 .DS_Store
+Thumbs.db
+
+# Logs & temporary files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*

@@ -1,0 +1,1256 @@
+\documentclass[10pt]{beamer}
+
+% =========================================================================
+% SMARTBASKET NEO: ENTERPRISE AIML RECOMMENDATION & INTELLIGENCE PLATFORM
+% 15-Minute Rigorous Academic Defense Presentation (Strictly 20 Content Slides)
+% =========================================================================
+
+% --- Custom Expanded Slide Canvas (Generous Dimensions: 220mm x 145mm) ---
+% Eliminates all overlap and guarantees ~0.3x (30%) clean breathing space!
+\geometry{paperwidth=220mm,paperheight=145mm}
+\setbeamersize{text margin left=8mm,text margin right=8mm}
+
+% --- Font: Century Gothic (TeX Gyre Adventor Geometric Sans-Serif) ---
+\usepackage[T1]{fontenc}
+\usepackage{tgadventor}
+\renewcommand*\familydefault{\sfdefault}
+
+% --- Essential Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,calc}
+
+% --- Theme & Color Specifications ---
+% Strict Rules: Headings in Red/Orange, Text in Black, Background in White
+\usetheme{default}
+\usecolortheme{default}
+
+\definecolor{brandred}{RGB}{198, 40, 40}      % Deep Crimson Red (#C62828)
+\definecolor{brandorange}{RGB}{230, 81, 0}    % Rich Deep Orange (#E65100)
+\definecolor{accentorange}{RGB}{245, 124, 0}  % Vibrant Amber (#F57C00)
+\definecolor{cardbg}{RGB}{253, 248, 245}      % Light warm tinted white for callout cards
+\definecolor{codebg}{RGB}{250, 250, 250}      % Clean light code background
+\definecolor{bordergray}{RGB}{224, 224, 224}  % Crisp card border
+
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{normal text}{fg=black}
+\setbeamercolor{frametitle}{fg=brandred,bg=white}
+\setbeamercolor{title}{fg=brandred}
+\setbeamercolor{subtitle}{fg=brandorange}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{date}{fg=gray}
+\setbeamercolor{item}{fg=brandorange}
+\setbeamercolor{subitem}{fg=brandred}
+\setbeamercolor{block title}{bg=cardbg,fg=brandred}
+\setbeamercolor{block body}{bg=cardbg,fg=black}
+\setbeamercolor{block title alerted}{bg=brandred!10!white,fg=brandred}
+\setbeamercolor{block body alerted}{bg=brandred!3!white,fg=black}
+
+% --- Footline: Page Numbers at Bottom Middle ---
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0.45cm,dp=0.25cm,center]{footline}
+        {\color{gray!80!black}\fontsize{8.5}{11}\selectfont \insertframenumber{} / \inserttotalframenumber}
+    \end{beamercolorbox}%
+}
+
+\setbeamertemplate{frametitle}{%
+    \vspace*{0.35cm}%
+    {\fontsize{14}{17}\selectfont \textbf{\color{brandred}\insertframetitle}}%
+    \par\vspace*{-0.12cm}%
+    {\color{brandorange}\rule{\textwidth}{1.3pt}}%
+    \vspace*{0.25cm}%
+}
+
+% --- Code Listing Setup ---
+\definecolor{codeblue}{rgb}{0.05,0.2,0.65}
+\definecolor{codegreen}{rgb}{0.0,0.48,0.1}
+\definecolor{codegray}{rgb}{0.45,0.45,0.45}
+
+\lstdefinestyle{slidescode}{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\fontsize{6.8pt}{8.4pt}\selectfont,
+    keywordstyle=\color{brandred}\bfseries,
+    commentstyle=\color{codegreen},
+    stringstyle=\color{brandorange},
+    numberstyle=\tiny\color{codegray},
+    breaklines=true,
+    breakatwhitespace=true,
+    showstringspaces=false,
+    columns=fullflexible,
+    keepspaces=true,
+    frame=single,
+    rulecolor=\color{bordergray},
+    xleftmargin=3pt,
+    xrightmargin=3pt,
+    aboveskip=2pt,
+    belowskip=2pt,
+    tabsize=2
+}
+\lstset{style=slidescode}
+
+\begin{document}
+
+% =========================================================================
+% STARTING SLIDE 1: BRAND TITLE SLIDE (From Uploaded Design PDF)
+% =========================================================================
+\begin{frame}
+    \vspace*{0.8cm}
+    \begin{center}
+        \begin{tcolorbox}[colback=black,colframe=black,arc=6mm,width=0.52\textwidth,halign=center,valign=center,boxrule=0pt,top=8mm,bottom=8mm]
+            {\fontsize{36}{42}\selectfont \textbf{\color{lime!85!black} smart}}\\[0.1cm]
+            {\fontsize{36}{42}\selectfont \textbf{\color{lime!85!black} basket}}\\[0.25cm]
+            {\fontsize{18}{22}\selectfont \textbf{\color{lime!85!black} NEO}}
+        \end{tcolorbox}
+    \end{center}
+    
+    \vfill
+    
+    \hfill
+    \begin{tabular}{l}
+        \textbf{\fontsize{8.5}{11}\selectfont \color{black} Group 14:}\\[0.08cm]
+        \fontsize{7.5}{10}\selectfont CB.AI.U4AID25104 -- A SHASHANK ROYAL\\[0.05cm]
+        \fontsize{7.5}{10}\selectfont CB.AI.U4AID25125 -- K ARAVIND GUPTHA\\[0.05cm]
+        \fontsize{7.5}{10}\selectfont CB.AI.U4AID25126 -- M DINESH KUMAR\\[0.05cm]
+        \fontsize{7.5}{10}\selectfont CB.AI.U4AID25129 -- M SUJAN
+    \end{tabular}
+    \hspace*{0.6cm}
+    \vspace*{0.4cm}
+\end{frame}
+
+% =========================================================================
+% STARTING SLIDE 2: TABLE OF CONTENTS (From Uploaded Design PDF)
+% =========================================================================
+\begin{frame}{Table of contents :}
+\vspace*{0.6cm}
+\begin{center}
+\begin{minipage}{0.75\textwidth}
+    \begin{itemize}\large\setlength{\itemsep}{0.45cm}
+        \item \textbf{\color{black} Introduction}
+        \item \textbf{\color{black} Problem statement and SmartBasketNeo Objectives}
+        \item \textbf{\color{black} Preprocessing}
+        \item \textbf{\color{black} Methodologies}
+        \item \textbf{\color{black} Results}
+        \item \textbf{\color{black} work division}
+    \end{itemize}
+\end{minipage}
+\end{center}
+\end{frame}
+
+% =========================================================================
+% SLIDE 3: PROBLEM STATEMENT & PROJECT OBJECTIVES
+% =========================================================================
+\begin{frame}{Problem Statement \& Project Objectives}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        \begin{block}{\color{brandred}\textbf{Core E-Commerce ML Problem Statement}}
+            \begin{itemize}\scriptsize
+                \item \textbf{Information Overload}: Online retailers host $20,000+$ products, but shoppers browse on mobile screens showing only 5--6 items at a time.
+                \item \textbf{Extreme Sparsity}: Customer-product interaction matrices are $>99.8\%$ empty, causing traditional collaborative filtering to fail on new or sparse users.
+                \item \textbf{Severe Latency Bottlenecks}: Evaluating complex deep networks over all 20,000 products takes $>2,000\text{ ms}$, crashing web page load SLAs ($<15\text{ ms}$).
+                \item \textbf{Echo-Chambers \& Repetition}: Recommending 6 identical laptops instead of needed accessories wastes viewport real estate.
+                \item \textbf{Post-Purchase Irrelevance}: Suggesting a \$1,200 TV the day after the user already bought one creates user frustration.
+            \end{itemize}
+        \end{block}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+        \begin{block}{\color{brandorange}\textbf{Core Project Objectives (SmartBasket Neo AIML)}}
+            \begin{enumerate}\scriptsize
+                \item \textbf{Sub-15ms 4-Stage Funnel}: Design a high-speed funnel filtering $20,000+ \to 100 \to 6$ items in under $10\text{ ms}$.
+                \item \textbf{Multi-Touch Precision Scoring}: Combine 5 signals: Content (35\%), Collaborative (25\%), Category (20\%), Brand (10\%), and Quality (10\%) with 12h continuous half-life decay.
+                \item \textbf{Smart Business Intelligence Guardrails}: Enforce durable goods suppression ($-\infty$), accessory boosting ($+40\%$), and MMR category diversity quotas.
+                \item \textbf{Curiosity Exploration \& XAI}: Integrate LinUCB contextual bandits for discovery and SHAP game-theoretic explainability badges.
+                \item \textbf{End-to-End Enterprise ML Suite}: Build Customer Churn Prediction, RFM Segmentation, Demand Forecasting, Inventory Restocking, and MLOps Drift Detection.
+                \item \textbf{Empirical Scientific Rigor}: Validate on Stanford SNAP real Amazon data using Temporal Leave-One-Out (LOO) testing.
+            \end{enumerate}
+        \end{block}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 2: THE AIML CHALLENGE & 4-STAGE FUNNEL ARCHITECTURE
+% =========================================================================
+\begin{frame}{The E-Commerce ML Challenge \& 4-Stage Funnel Architecture}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{The Giant Supermarket Problem}: In a store with $20,000+$ items, testing every product with heavy neural networks on every user click would freeze the website ($>2000\text{ ms}$).
+            \item \textbf{The Solution}: A \textbf{4-Stage Recommendation Funnel} (\textit{Covington et al., Google/YouTube, RecSys 2016}) that filters items in rapid stages.
+        \end{itemize}
+        {\color{brandorange}\textbf{The 4 Funnel Stages in Plain English}}:
+        \begin{enumerate}\scriptsize
+            \item \textbf{Stage 1: Fast Retrieval}: Lightweight parallel filters drop $20,000+ \to \approx 100$ items in $<5\text{ ms}$.
+            \item \textbf{Stage 2: Precision Scoring}: Combines 5 distinct signals into a score from $0.0$ to $1.0$.
+            \item \textbf{Stage 3: Smart Re-Ranking}: Removes duplicate durables and injects category variety.
+            \item \textbf{Stage 4: Top-6 Delivery}: Shows the 6 best items with transparent XAI explanations.
+        \end{enumerate}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+        {\color{brandred}\textbf{Real-Time Shopping Scenario}}:
+        \begin{itemize}\scriptsize
+            \item Shopper clicks a \textbf{Sony 4K OLED TV}.
+            \item \textbf{Stage 1}: Gathers 100 candidate electronics and accessories.
+            \item \textbf{Stage 2}: Scores each candidate using text, co-orders, and ratings.
+            \item \textbf{Stage 3}: Hides other identical TVs, but boosts HDMI cables and soundbars.
+            \item \textbf{Stage 4}: Instantly displays 6 relevant items in under $10\text{ ms}$!
+        \end{itemize}
+        {\color{brandorange}\textbf{Sample Latency Calculation}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{Catalog Size}: $N = 20,000$ products.
+            \item \textbf{Naive Direct Neural Pass}: $20,000 \times 0.1\text{ ms} = \mathbf{2,000\text{ ms}}$ (Unusable lag!).
+            \item \textbf{Our Funnel}: $4.2\text{ ms (Stage 1)} + 5.0\text{ ms (Stage 2)} + 0.8\text{ ms (Stage 3)} = \mathbf{10.0\text{ ms}}$ ($< 15\text{ ms}$ SLA!).
+        \end{itemize}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 3: DATA PREPROCESSING & AUTOMATED FEATURE PIPELINE
+% =========================================================================
+\begin{frame}[fragile]{Automated Preprocessing \& Feature Engineering Pipeline}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item Real shopping data is full of errors: missing values, typos, and crazy price extremes.
+            \item This pipeline automatically detects outliers, transforms categorical text into numbers, and standardizes scales so models learn reliably.
+        \end{itemize}
+        {\color{brandorange}\textbf{Mathematical Formulas \& Term Definitions}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{IQR Outlier Detection Bounds}:
+            $$[\text{Lower}, \text{Upper}] = [Q_1 - 1.5 \cdot \text{IQR}, \; Q_3 + 1.5 \cdot \text{IQR}]$$
+            \begin{itemize}\tiny
+                \item $Q_1$: $25^{\text{th}}$ percentile of feature values (lower quartile).
+                \item $Q_3$: $75^{\text{th}}$ percentile of feature values (upper quartile).
+                \item $\text{IQR} = Q_3 - Q_1$: Interquartile Range (middle 50\% spread).
+            \end{itemize}
+            \item \textbf{Standard Normal Scaling}: $z = \frac{x - \mu}{\sigma}$ ($x$: raw feature, $\mu$: mean, $\sigma$: standard deviation).
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Example \& Sample Calculation}}:
+        \begin{itemize}\scriptsize
+            \item In an audio store, normal prices have $Q_1 = \$30, Q_3 = \$120 \implies \text{IQR} = \$90$.
+            \item Upper limit: $120 + 1.5(90) = \$255$.
+            \item A newly listed luxury gold cable is priced at $x = \$450$.
+            \item Since $\$450 > \$255$, it is capped to $\$255$ so it does not distort training.
+            \item Standardized score ($\mu = \$60, \sigma = \$30$): $z = \frac{120 - 60}{30} = \mathbf{+2.0}$.
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# ml/preprocessing/pipeline.py
+class AutomatedPreprocessingPipeline:
+    def __init__(self, scaling="standard", outlier="iqr"):
+        self.cleaner = DataCleaner(outlier_method=outlier)
+        self.encoder = CategoricalEncoder()
+        self.scaler = FeatureScaler(method=scaling)
+        self.selector = FeatureSelector()
+
+    def fit_transform(self, df: pd.DataFrame, target_col: str):
+        # 1. Clean outliers and null values
+        df_clean = self.cleaner.fit_transform(df)
+        
+        # 2. Encode categorical features safely
+        df_enc = self.encoder.fit_transform(df_clean, target_col)
+        
+        # 3. Scale numerical features
+        self.scaler.exclude_cols = [target_col]
+        df_scaled = self.scaler.fit_transform(df_enc)
+        
+        # 4. RFE feature selection
+        return self.selector.fit_transform(df_scaled, target_col)
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 4: STAGE 1 CANDIDATE RETRIEVAL OVERVIEW
+% =========================================================================
+\begin{frame}[fragile]{Stage 1: Multi-Model Candidate Retrieval ($20,000+ \to \approx 100$ in $<5\text{ ms}$)}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item When a customer views a product, Stage 1 casts a wide net across 20,000 items using 3 fast retrieval streams running in parallel.
+            \item It collects candidates from all 3 methods, removes duplicates, and outputs $\approx 100$ top candidates for deep scoring.
+        \end{itemize}
+        {\color{brandorange}\textbf{Candidate Pool Union Formula \& Terms}}:
+        \begin{equation*}
+            \mathcal{P}_{\text{candidate}} = \mathcal{P}_{\text{Content-SVD}} \cup \mathcal{P}_{\text{MatrixFactorization}} \cup \mathcal{P}_{\text{NCF}}
+        \end{equation*}
+        \begin{itemize}\scriptsize
+            \item $\mathcal{P}_{\text{Content-SVD}}$: Top-35 items similar in text description.
+            \item $\mathcal{P}_{\text{MatrixFactorization}}$: Top-35 items matching past rating patterns.
+            \item $\mathcal{P}_{\text{NCF}}$: Top-35 items from deep neural embedding predictions.
+            \item $\cup$: Set union operation (merges lists and deletes duplicates).
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Example \& Overlap Calculation}}:
+        \begin{itemize}\scriptsize
+            \item Shopper views a \textbf{Yamaha Acoustic Guitar}.
+            \item Stream 1 returns 35 items (other guitars, guitar bags).
+            \item Stream 2 returns 35 items (with 10 already found in Stream 1).
+            \item Stream 3 returns 35 items (with 8 already found in Streams 1 \& 2).
+            \item \textbf{Unique Candidate Pool}: $35 + (35 - 10) + (35 - 8) = \mathbf{87}$ candidates sent to Stage 2 in under $4.2\text{ ms}$!
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# backend/ml/engine.py: Multi-Stream Retrieval
+candidate_pool = set()
+
+# Stream 1A: Semantic SVD Nearest Neighbors
+content_cands = content_engine.get_similar(
+    recent_pid, top_n=35
+)
+candidate_pool.update(content_cands)
+
+# Stream 1B: SVD Matrix Factorization
+cf_cands = cf_svd_engine.recommend(
+    user_id, top_n=35
+)
+candidate_pool.update(cf_cands)
+
+# Stream 1C: Neural CF (NCF) Top Predictions
+ncf_cands = ncf_engine.predict_top(
+    user_id, top_n=35
+)
+candidate_pool.update(ncf_cands)
+
+# Deduplicated pool ~100 items produced in < 5 ms!
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 5: RETRIEVAL STREAM 1A - CONTENT TF-IDF + TRUNCATED SVD
+% =========================================================================
+\begin{frame}[fragile]{Stream 1A: Content TF-IDF + TruncatedSVD Semantic Embeddings}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept \& The Vocabulary Dilemma}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{The Flaw in Word Matching}: If a shopper looks at a \textit{"Noise-Cancelling Headphone"} and an item is titled \textit{"Over-Ear Acoustic Wireless Headset"}, standard word search fails because the exact words differ!
+            \item \textbf{Our Solution}: We convert text to TF-IDF, then use \textbf{TruncatedSVD} (Latent Semantic Analysis) to compress 5,000 word columns into 30 dense concept dimensions. Words with similar meanings map to the same direction!
+        \end{itemize}
+        {\color{brandorange}\textbf{Mathematical Formulation \& Term Definitions}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{TF-IDF Formula}: $\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \left[ \ln\left(\frac{1 + |D|}{1 + \text{DF}(t, D)}\right) + 1 \right]$
+            \begin{itemize}\tiny
+                \item $\text{TF}(t, d)$: How many times term $t$ appears in product description $d$.
+                \item $|D|$: Total product count in catalog ($20,000+$ items).
+                \item $\text{DF}(t, D)$: How many products mention term $t$. Common words ("the", "item") get $\approx 0$ weight; rare technical terms get high weight.
+            \end{itemize}
+            \item \textbf{Cosine Semantic Similarity}: $\text{Sim}(A, B) = \frac{\mathbf{e}_A \cdot \mathbf{e}_B}{\|\mathbf{e}_A\|_2 \|\mathbf{e}_B\|_2 + \epsilon}$
+            \begin{itemize}\tiny
+                \item $\mathbf{e}_A, \mathbf{e}_B$: 30-dimensional SVD semantic vectors of Products A and B.
+            \end{itemize}
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Example \& Step-by-Step Calculation}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{Product A}: \textit{"Sony WH-1000XM5 Noise Canceling Headphones"} $\implies \mathbf{e}_A = [0.80, 0.60]$.
+            \item \textbf{Product B}: \textit{"Bose QuietComfort Wireless Acoustic Headset"} $\implies \mathbf{e}_B = [0.60, 0.80]$.
+            \item \textbf{Step 1 (Dot Product)}: $\mathbf{e}_A \cdot \mathbf{e}_B = (0.80 \times 0.60) + (0.60 \times 0.80) = 0.48 + 0.48 = \mathbf{0.96}$.
+            \item \textbf{Step 2 (Magnitudes)}: $\|\mathbf{e}_A\| = \sqrt{0.8^2 + 0.6^2} = 1.0, \; \|\mathbf{e}_B\| = \sqrt{0.6^2 + 0.8^2} = 1.0$.
+            \item \textbf{Step 3 (Cosine Match)}: $\text{Sim} = \frac{0.96}{1.0 \times 1.0} = \mathbf{0.96}$ (Extremely strong semantic match!).
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# ml/recommendation/content_based.py
+from sklearn.feature_extraction.text \
+    import TfidfVectorizer
+from sklearn.decomposition import TruncatedSVD
+from sklearn.metrics.pairwise import cosine_similarity
+
+# 1. Build document text for each product
+corpus = [f"{p.title} {p.category} {p.brand} "
+          f"{' '.join(p.features)}".lower() 
+          for p in catalog]
+
+# 2. Extract TF-IDF feature space (5000 dims)
+# Rare descriptive terms receive high importance
+tfidf = TfidfVectorizer(max_features=5000)
+X_sparse = tfidf.fit_transform(corpus)
+
+# 3. TruncatedSVD: 5000 sparse dims -> 30 dense concepts
+# Uncovers hidden synonyms and category semantics
+svd = TruncatedSVD(n_components=30, random_state=42)
+item_embeddings = svd.fit_transform(X_sparse)
+
+# 4. Real-time dense cosine similarity lookup
+sim_matrix = cosine_similarity(item_embeddings)
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 6: RETRIEVAL STREAM 1B - MATRIX FACTORIZATION (SVD)
+% =========================================================================
+\begin{frame}[fragile]{Stream 1B: Collaborative Matrix Factorization (Low-Rank SVD)}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item Shoppers who liked the same things in the past will probably like the same things in the future.
+            \item SVD compresses a massive table of user ratings into two smaller tables: user taste factors and product attribute factors ($k=20$).
+        \end{itemize}
+        {\color{brandorange}\textbf{Mathematical Formulation \& Term Definitions}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{Matrix Factorization}: $R \approx U \cdot \Sigma \cdot V^T = \hat{R}, \quad \hat{r}_{u, i} = \mathbf{u}_u^T \mathbf{v}_i$
+            \begin{itemize}\tiny
+                \item $R \in \mathbb{R}^{M \times N}$: Sparse rating table ($M$ shoppers, $N$ products).
+                \item $U \in \mathbb{R}^{M \times k}$: Shopper latent preference matrix ($k=20$ factors).
+                \item $V \in \mathbb{R}^{N \times k}$: Product latent attribute matrix ($k=20$ factors).
+                \item $\hat{r}_{u, i}$: Predicted rating score of shopper $u$ for product $i$.
+            \end{itemize}
+            \item \textbf{Interactive Masking}: $\hat{r}_{u, i} = -\infty \;\; \forall i \text{ where } R_{u, i} > 0$ (prevents re-recommending already purchased items).
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Example \& Sample Calculation}}:
+        \begin{itemize}\scriptsize
+            \item Shopper Alice has latent taste vector: $\mathbf{u}_{\text{Alice}} = [0.90, 0.30]$.
+            \item Logitech Wireless Mouse factor vector: $\mathbf{v}_{\text{Mouse}} = [0.80, 0.40]$.
+            \item Predicted Rating: $\hat{r} = (0.90 \times 0.80) + (0.30 \times 0.40) = 0.72 + 0.12 = \mathbf{0.84}$.
+            \item If Alice already bought this mouse, score is masked to $-\infty$!
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# ml/recommendation/collaborative.py
+from sklearn.decomposition import TruncatedSVD
+import numpy as np
+
+# 1. Build sparse user-item rating matrix R (M x N)
+R = build_interaction_matrix(users, items)
+
+# 2. Decompose into k=20 latent factors
+k = min(20, min(R.shape) - 1)
+svd = TruncatedSVD(n_components=k, random_state=42)
+u_factors = svd.fit_transform(R)      # (M x k)
+v_factors = svd.components_           # (k x N)
+
+# 3. Vectorized user score reconstruction
+preds = np.dot(u_factors[u_idx], v_factors)
+
+# 4. Mask existing interactions with -inf
+preds[R[u_idx] > 0] = -np.inf
+
+# 5. Extract top candidates for candidate pool
+top_candidate_indices = np.argsort(preds)[::-1][:35]
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 7: RETRIEVAL STREAM 1C - NEURAL COLLABORATIVE FILTERING (NCF)
+% =========================================================================
+\begin{frame}[fragile]{Stream 1C: Neural Collaborative Filtering (NCF) Deep Architecture}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item Linear multiplications assume shopper behavior is simple. Real shopping has non-linear, multi-dimensional connections.
+            \item NCF feeds user and item embeddings into a Multi-Layer Perceptron (MLP) to learn deep purchase probabilities (\textit{He et al., WWW 2017}).
+        \end{itemize}
+        {\color{brandorange}\textbf{Mathematical Equations \& Term Definitions}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{Embedding Concatenation}: $\mathbf{z}_0 = [\mathbf{p}_u \,\|\, \mathbf{q}_i] \in \mathbb{R}^{64}$
+            \begin{itemize}\tiny
+                \item $\mathbf{p}_u \in \mathbb{R}^{32}$: User embedding; $\mathbf{q}_i \in \mathbb{R}^{32}$: Product embedding.
+            \end{itemize}
+            \item \textbf{Deep MLP}: $\mathbf{z}_1 = \text{ReLU}(W_1 \mathbf{z}_0 + b_1)$ [$64 \to 128$], $\mathbf{z}_2 = \text{ReLU}(W_2 \mathbf{z}_1 + b_2)$ [$128 \to 128$], $\mathbf{z}_3 = \text{ReLU}(W_3 \mathbf{z}_2 + b_3)$ [$128 \to 64$].
+            \item \textbf{Output Purchase Probability}: $\hat{y}_{ui} = \sigma(W_4 \mathbf{z}_3 + b_4) = \frac{1}{1 + e^{-a_{ui}}}$.
+            \item \textbf{Binary Cross-Entropy Loss}: $\mathcal{L} = - [y \ln \hat{y} + (1 - y)\ln(1 - \hat{y})]$.
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Example \& Sample Calculation}}:
+        \begin{itemize}\scriptsize
+            \item Shopper visits Gaming section; neural net evaluates an RGB Mechanical Keyboard.
+            \item Network outputs final logit $a_{ui} = 1.386$.
+            \item Probability: $\hat{y} = \frac{1}{1 + e^{-1.386}} = \frac{1}{1 + 0.25} = \mathbf{0.80}$ ($80\%$ probability of purchase!).
+            \item If the user actually purchased the item ($y=1$): $\mathcal{L} = -\ln(0.80) = \mathbf{0.223}$.
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# ml/recommendation/collaborative.py (PyTorch NCF)
+import torch
+import torch.nn as nn
+
+class NCFEngine(nn.Module):
+    def __init__(self, num_users, num_items, dim=32):
+        super().__init__()
+        self.user_embed = nn.Embedding(num_users, dim)
+        self.item_embed = nn.Embedding(num_items, dim)
+        
+        self.mlp = nn.Sequential(
+            nn.Linear(dim * 2, 128),
+            nn.ReLU(),
+            nn.Linear(128, 128),
+            nn.ReLU(),
+            nn.Linear(128, 64),
+            nn.ReLU(),
+            nn.Linear(64, 1),
+            nn.Sigmoid()
+        )
+
+    def forward(self, u_idx, i_idx):
+        z = torch.cat([self.user_embed(u_idx), 
+                       self.item_embed(i_idx)], dim=-1)
+        return self.mlp(z).squeeze()
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 8: STAGE 2 - 5 SCORING PILLARS BRIEF SUMMARY
+% =========================================================================
+\begin{frame}{Stage 2: Precision Multi-Model Scoring (The 5 Pillars Summary)}
+\begin{center}\scriptsize
+\textit{*Brief summary of the 5 scoring algorithms discussed with faculty in preliminary reviews*}
+\end{center}
+\vspace*{-0.2cm}
+\begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+        \begin{block}{\color{brandred}\textbf{Pillar 1: Content Score ($35\%$)}}
+            \scriptsize
+            $S_{\text{content}} = 0.70 S_{\text{session}} + 0.30 S_{\text{profile}}$\\
+            $S_{\text{session}}$: active clicks; $S_{\text{profile}}$: long-term history.\\
+            \textbf{Real-Time Sample}: $S_{\text{sess}}=0.80, S_{\text{prof}}=0.40 \implies 0.7(0.8) + 0.3(0.4) = \mathbf{0.68}$.
+        \end{block}
+        \begin{block}{\color{brandorange}\textbf{Pillar 2: Collaborative Co-Occurrence ($25\%$)}}
+            \scriptsize
+            $S_{\text{collab}} = \min(1.0, \sum_i \min(1.0, \frac{C_{i,p}}{4}) \frac{w_i}{4})$\\
+            $C_{i,p}$: times bought together; $w_i$: interaction weight.\\
+            \textbf{Real-Time Sample}: Laptop-Mouse co-orders $C=4, w=2 \implies 1.0 \times (2/4) = \mathbf{0.50}$.
+        \end{block}
+        \begin{block}{\color{brandred}\textbf{Pillar 3: Category Affinity Score ($20\%$)}}
+            \scriptsize
+            $w_i = b_i (0.90)^k, \quad S_{\text{cat}} = \min(1.0, \frac{\sum w_i}{6.0})$\\
+            $b_i$: action weight; $k$: position; $6.0$: max cap.\\
+            \textbf{Real-Time Sample}: 3 Electronics views $\sum w_i = 4.5 \implies 4.5 / 6.0 = \mathbf{0.75}$.
+        \end{block}
+    \end{column}%
+    \begin{column}{0.48\textwidth}
+        \begin{block}{\color{brandorange}\textbf{Pillar 4: Brand Affinity Score ($10\%$)}}
+            \scriptsize
+            $S_{\text{brand}} = \min(1.0, \frac{A(B_p)}{6.0})$\\
+            $A(B_p)$: customer's total interactions with brand $B_p$.\\
+            \textbf{Real-Time Sample}: Sony brand history $A=3.0 \implies 3.0 / 6.0 = \mathbf{0.50}$.
+        \end{block}
+        \begin{block}{\color{brandred}\textbf{Pillar 5: Quality Prior Score ($10\%$)}}
+            \scriptsize
+            $S_{\text{quality}} = 0.70 \left(\frac{R}{5.0}\right) + 0.30 \min\left(1.0, \frac{\ln(1 + N)}{7.0}\right)$\\
+            $R$: star rating; $N$: verified review count.\\
+            \textbf{Real-Time Sample}: $R=4.5\star, N=1000$ reviews:\\
+            $0.70(0.90) + 0.30(6.91/7.0) = 0.63 + 0.296 = \mathbf{0.926}$.
+        \end{block}
+        \begin{block}{\color{brandorange}\textbf{Combined 5-Pillar Score}}
+            \tiny
+            Master formula: $S = 0.35 S_{\text{cont}} + 0.25 S_{\text{collab}} + 0.20 S_{\text{cat}} + 0.10 S_{\text{brand}} + 0.10 S_{\text{qual}}$.
+        \end{block}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 9: STAGE 2 - MASTER HYBRID FUSION & CONTINUOUS TELEMETRY
+% =========================================================================
+\begin{frame}[fragile]{The 5-Pillar Master Hybrid Score Fusion \& Real-Time Telemetry}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item We combine all 5 pillar scores into one master score ($0.0$ to $1.0$).
+            \item Recent clicks must carry more weight than old clicks, so we apply a continuous **12-hour half-life exponential decay**.
+        \end{itemize}
+        {\color{brandorange}\textbf{Formulas \& Term Definitions}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{Continuous Time-Decay}: $w(t) = b_i \cdot e^{-\lambda \cdot \Delta t_{\text{hours}}}$, where $\lambda = \frac{\ln(2)}{12} \approx 0.0578$.
+            \begin{itemize}\tiny
+                \item $b_i$: Base action weight (Cart add = 3.5, Product View = 2.5).
+                \item $\Delta t$: Exact hours passed since the shopper clicked the item.
+            \end{itemize}
+            \item \textbf{Master Hybrid Linear Ensemble}:
+            $$S_{\text{hybrid}} = 0.35 S_{\text{content}} + 0.25 S_{\text{collab}} + 0.20 S_{\text{cat}} + 0.10 S_{\text{brand}} + 0.10 S_{\text{quality}}$$
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Example (Shopper Viewing iPhone 15 Pro)}}:
+        \begin{itemize}\scriptsize
+            \item User added item to cart 12 hours ago ($\Delta t = 12$): $w = 3.5 \cdot e^{-0.0578 \times 12} = 3.5 \times 0.50 = \mathbf{1.75}$ (exactly halved!).
+            \item Evaluating Apple 20W Charger: $S_{\text{cont}}=0.82, S_{\text{collab}}=0.90, S_{\text{cat}}=0.75, S_{\text{brand}}=0.85, S_{\text{qual}}=0.94$.
+            \item Master Score: $0.35(0.82) + 0.25(0.90) + 0.20(0.75) + 0.10(0.85) + 0.10(0.94) = \mathbf{0.8410}$ (\textbf{Rank \#1 Winner!}).
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# backend/ml/engine.py: Real-Time Scoring
+def score_candidate(p, user_ctx):
+    # 1. 5 Normalized Component Scores (0 to 1)
+    s_cont  = get_hierarchical_content(p, user_ctx)
+    s_col   = get_collab_cooccurrence(p, user_ctx)
+    s_cat   = get_category_affinity(p, user_ctx)
+    s_brand = get_brand_affinity(p, user_ctx)
+    s_qual  = get_quality_prior(p)
+
+    # 2. Master Convex Linear Ensemble
+    s_hybrid = (
+        0.35 * s_cont +
+        0.25 * s_col +
+        0.20 * s_cat +
+        0.10 * s_brand +
+        0.10 * s_qual
+    )
+    return s_hybrid
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 10: STAGE 3 - DURABLE GOODS SUPPRESSION & ACCESSORY BOOSTING
+% =========================================================================
+\begin{frame}[fragile]{Stage 3: Business Guardrails -- Durable Goods Suppression \& Cross-Selling}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item Nobody buys two \$1,200 TVs or two laptops in the same week.
+            \item If a customer bought a durable product yesterday, we set its score to $-\infty$ (hiding it) and automatically give a \textbf{+40\% boost} to matching accessories (cables, cases, mice)!
+        \end{itemize}
+        {\color{brandorange}\textbf{Mathematical Guardrail Rules \& Terms}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{Durable Suppression Rule}:
+            $$S(p) = -\infty \quad \forall \, p \in \mathcal{P}_{\text{purchased\_durable}}$$
+            ($\mathcal{P}_{\text{purchased\_durable}}$: Laptops, TVs, Consoles, Refrigerators).
+            \item \textbf{Complementary Accessory Floor Boost}:
+            $$\text{If } \text{User owns durable good and } p.\text{cat} \in \mathcal{C}_{\text{accessory}} \implies S_{\text{boosted}}(p) = \max(S_{\text{collab}}(p), \mathbf{0.40})$$
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Example \& Sample Calculation}}:
+        \begin{itemize}\scriptsize
+            \item Customer bought a \$1,200 MacBook yesterday.
+            \item Candidate A (Another MacBook): Raw match $S=0.92 \to$ Dropped to $-\infty$!
+            \item Candidate B (USB-C Hub): Co-occurrence $S_{\text{collab}} = 0.15 \to \max(0.15, \mathbf{0.40}) = \mathbf{0.40}$ ($+166\%$ boost!).
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# backend/ml/engine.py: Durable Guardrails
+DURABLE_CATEGORIES = {2, 3, 5, 7, 8, 10}
+ACCESSORY_CATEGORIES = {1, 4, 6, 12}
+
+for p in candidate_pool:
+    # 1. Durable Goods Suppression
+    if p.id in purchased_durable_pids:
+        candidate_scores[p.id]['hybrid'] = -np.inf
+        continue
+
+    # 2. Complementary Accessory Floor Boost
+    if purchased_durable_pids and \
+       p.category_id in ACCESSORY_CATEGORIES:
+        collab_score = max(collab_score, 0.40)
+        candidate_scores[p.id]['is_accessory'] = True
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 11: STAGE 3 - MAXIMAL MARGINAL RELEVANCE (MMR) DIVERSITY
+% =========================================================================
+\begin{frame}[fragile]{Stage 3: Diversity Optimization -- Maximal Marginal Relevance (MMR)}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item Showing 6 identical black mice creates a boring "echo chamber".
+            \item MMR picks items that are both relevant to the shopper and noticeably different from products already selected.
+        \end{itemize}
+        {\color{brandorange}\textbf{Mathematical Formulation \& Terms}}:
+        \begin{equation*}
+            \text{MMR}(p) = \arg\max_{p \in \mathcal{R} \setminus \mathcal{S}} \left[ \lambda \cdot \text{Rel}(p) - (1 - \lambda) \max_{s \in \mathcal{S}} \text{Sim}(p, s) \right]
+        \end{equation*}
+        \begin{itemize}\scriptsize
+            \item $\text{Rel}(p)$: Relevance match score of candidate item $p$.
+            \item $\max_{s \in \mathcal{S}} \text{Sim}(p, s)$: Highest similarity to any item already chosen ($\mathcal{S}$).
+            \item $\lambda = 0.70$: Balances relevance ($70\%$) against variety ($30\%$).
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Example (Item \#1 selected is Laptop A)}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{Cand 1 (Laptop B)}: $\text{Rel}=0.95, \text{Sim}=0.90 \implies 0.70(0.95) - 0.30(0.90) = 0.665 - 0.270 = \mathbf{0.395}$.
+            \item \textbf{Cand 2 (Headphones)}: $\text{Rel}=0.82, \text{Sim}=0.20 \implies 0.70(0.82) - 0.30(0.20) = 0.574 - 0.060 = \mathbf{0.514}$.
+            \item Decision: $\mathbf{0.514 > 0.395} \implies$ Headphones win! Enforces category quotas ($\le 2$ items/category).
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# backend/ml/engine.py: Adaptive MMR Selection
+selected_recs = []
+category_counts = defaultdict(int)
+
+# Multi-Category Quota Enforcement
+for pid, scores in sorted_candidates:
+    p = prod_by_id[pid]
+    c_id = p.category_id or 0
+    cat_limit = 2 if (c_id == primary_cat) else 1
+    
+    if category_counts[c_id] < cat_limit:
+        selected_recs.append(p)
+        category_counts[c_id] += 1
+        
+    if len(selected_recs) >= 5:
+        break
+# Slot 6 is reserved for LinUCB bandit exploration!
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 12: STAGE 3 - CURIOSITY BANDIT (LinUCB EXPLORATION)
+% =========================================================================
+\begin{frame}[fragile]{Stage 3: Curiosity Exploration -- Contextual LinUCB Multi-Armed Bandit}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item If you only recommend shoes to someone who viewed shoes, they never discover other departments.
+            \item The LinUCB bandit gives a curiosity exploration bonus to less-viewed categories, reserving \textbf{Slot 6} for serendipity.
+        \end{itemize}
+        {\color{brandorange}\textbf{Mathematical Formulation \& Terms}}:
+        \begin{equation*}
+            S_{\text{ucb}}(c) = \text{Affinity}(c) + \alpha \sqrt{\frac{\ln(|C| + 1)}{n_c + 1}}
+        \end{equation*}
+        \begin{itemize}\scriptsize
+            \item $\text{Affinity}(c)$: User's known preference for category $c$ (Exploitation).
+            \item $\alpha = 1.25$: Curiosity exploration coefficient.
+            \item $|C|$: Total active categories; $n_c$: Times category $c$ was shown.
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Example \& Sample Calculation ($\alpha = 1.25, |C|=4$)}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{Category A (Electronics)}: $A=0.80, n=20 \implies 0.80 + 1.25\sqrt{\frac{1.609}{21}} = 0.80 + 0.346 = \mathbf{1.146}$.
+            \item \textbf{Category B (Fitness Gear)}: $A=0.30, n=1 \implies 0.30 + 1.25\sqrt{\frac{1.609}{2}} = 0.30 + 1.121 = \mathbf{1.421}$.
+            \item Decision: $\mathbf{1.421 > 1.146} \implies$ Fitness wins Slot 6 as a fresh discovery item!
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# backend/ml/engine.py: LinUCB Exploration Slot
+if is_diverse_shopper and len(selected_recs) < 6:
+    unrepresented_cats = [
+        c for c in category_affinity.keys() 
+        if category_counts.get(c, 0) == 0
+    ]
+    if unrepresented_cats:
+        N = len(category_affinity) + 1
+        best_bandit_cat = max(
+            unrepresented_cats,
+            key=lambda c: category_affinity.get(c, 0) + 
+            1.25 * math.sqrt(math.log(N)/(category_counts[c]+1))
+        )
+        # Select best product from bandit category
+        bandit_item = get_top_item_in_cat(best_bandit_cat)
+        selected_recs.append(bandit_item)
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 13: COLD-START & DUAL CATBOOST PERSONALIZATION
+% =========================================================================
+\begin{frame}[fragile]{Dual-Model CatBoost Personalization \& Cold-Start Adaptation}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item What if a user just signed up today? Or a new product has 0 reviews?
+            \item New users see diverse top-rated bestsellers; new items are matched by text.
+            \item When a user becomes active ($>20$ actions), we train a private mini CatBoost model!
+        \end{itemize}
+        {\color{brandorange}\textbf{The 3 Adaptation Regimes}}:
+        \begin{enumerate}\scriptsize
+            \item \textbf{New User (0 History)}: Collaborative $S_{\text{collab}} = 0$. System displays Multi-Category Flagship Curation ($\ge 4.5\star, >100$ reviews).
+            \item \textbf{New Product (0 Sales)}: Indexed via TF-IDF text features; discoverable from day 1.
+            \item \textbf{Active User ($>20$ events)}: Triggers localized \textbf{CatBoost model} (\texttt{user\_X\_local\_Category.cbm}) for hyper-personalized ranking.
+        \end{enumerate}
+        {\color{brandred}\textbf{Real-Time Shopping Workflow}}:
+        \begin{itemize}\scriptsize
+            \item Guest visits homepage: receives 6 diverse flagship items.
+            \item Guest views 1 Sony Camera: session weight updates immediately to $w=2.5$.
+            \item Next click: TF-IDF immediately recommends matching camera lenses and memory cards!
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# ml/training/trainer.py: Dual CatBoost Engine
+from catboost import CatBoostClassifier
+
+# 1. Global CatBoost: General Population Conversion
+global_cbm = CatBoostClassifier(
+    iterations=250, depth=6, learning_rate=0.05
+)
+global_cbm.fit(X_global, y_actions, cat_features=cat_cols)
+
+# 2. Localized Asymmetric Model (> 20 user actions)
+def trigger_local_retrain(user_id, category_id):
+    user_logs = get_user_interactions(user_id, category_id)
+    if len(user_logs) >= 20:
+        local_cbm = CatBoostClassifier(iterations=100, depth=4)
+        local_cbm.fit(user_logs[X_cols], user_logs['action'])
+        local_cbm.save_model(f"user_{user_id}_{category_id}.cbm")
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 14: EXPLAINABLE AI (XAI) & SHAP DECISION ATTRIBUTION
+% =========================================================================
+\begin{frame}[fragile]{Explainable AI (XAI) Engine \& Real-Time Decision Attribution}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item Recommender systems should never be mysterious "black boxes".
+            \item We use SHAP game-theory math to calculate the exact credit each feature deserves, then display clear, friendly badges to the customer!
+        \end{itemize}
+        {\color{brandorange}\textbf{Mathematical Formulation \& Terms}}:
+        \begin{equation*}
+            \phi_i(x) = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|! (|F| - |S| - 1)!}{|F|!} \left[ f(S \cup \{i\}) - f(S) \right]
+        \end{equation*}
+        \begin{itemize}\scriptsize
+            \item $\phi_i(x)$: Fair marginal contribution of feature $i$ to the final prediction.
+            \item $F$: Set of all features; $f(S)$: Prediction using only feature subset $S$.
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Attribution Example \& UI Badges}}:
+        \begin{itemize}\scriptsize
+            \item Base average score $= 0.40$; Candidate final score $= 0.85$.
+            \item Feature weights: $\phi_{\text{collab}} = +0.25$, $\phi_{\text{session}} = +0.15$, $\phi_{\text{rating}} = +0.05$.
+            \item Decision: Since $\phi_{\text{collab}} \ge 0.20 \implies$ Display badge: \textbf{"Frequently Paired Choice"}!
+            \item Other badges: \textit{"Matched to Active Session"}, \textit{"Curiosity Discovery"}.
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# ml/explainability/explainer.py
+import shap
+
+class ExplainableAIEngine:
+    def __init__(self, model, background_data):
+        self.model = model
+        self.explainer = shap.TreeExplainer(model) \
+            if hasattr(model, "feature_importances_") \
+            else shap.KernelExplainer(model.predict, background_data)
+
+    def explain_prediction(self, instance, task="recommendation"):
+        shap_vals = self.explainer.shap_values(instance)
+        # Map highest positive contributors to UI narrative
+        top_indices = np.argsort(shap_vals[0])[::-1][:3]
+        return [{
+            "feature": self.feature_names[idx],
+            "impact": "High Positive",
+            "weight": round(float(shap_vals[0][idx]), 3)
+        } for idx in top_indices]
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 15: CUSTOMER CHURN PREDICTION & RETENTION ENGINE
+% =========================================================================
+\begin{frame}[fragile]{Enterprise Customer Churn Prediction \& Retention Engine}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item Predicts which shoppers are about to leave the store forever.
+            \item Evaluates 7 competing machine learning models and automatically picks the champion model to send automated discount vouchers!
+        \end{itemize}
+        {\color{brandorange}\textbf{Mathematical Formulation \& Terms}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{Recency Inactivity}: $\Delta t = t_{\text{current}} - t_{\text{last\_order}}$ (Days without shopping).
+            \item \textbf{Logistic Sigmoid Probability}:
+            $$P(\text{churn}) = \sigma(z) = \frac{1}{1 + e^{-z}}, \quad z = \beta_0 + \beta_1 \Delta t - \beta_2 \text{Freq} - \beta_3 \text{Monetary}$$
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Example \& Automated Retention}}:
+        \begin{itemize}\scriptsize
+            \item Customer: Inactive for $75$ days, $1$ order, spent $\$45$.
+            \item Logit: $z = -1.2 + (0.04 \times 75) - (0.5 \times 1) - (0.01 \times 45) = \mathbf{+0.85}$.
+            \item Churn Probability: $P = \frac{1}{1 + e^{-0.85}} = \frac{1}{1 + 0.427} = \mathbf{0.70}$ ($70\%$ risk!).
+            \item \textbf{Action}: Since $P \ge 0.60$ (High Risk), triggers an automated $20\%$ discount retention coupon (\texttt{AMAZONAI20})!
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# ml/churn/churn_predictor.py
+class EnterpriseChurnPredictor:
+    def fit_and_compare(self, df: pd.DataFrame):
+        candidates = {
+            "RandomForest": RandomForestClassifier(n_estimators=150),
+            "XGBoost": xgb.XGBClassifier(n_estimators=150, max_depth=6),
+            "CatBoost": cb.CatBoostClassifier(iterations=200, depth=6),
+            "NeuralNetMLP": MLPClassifier(hidden_layer_sizes=(64, 32))
+        }
+        for name, model in candidates.items():
+            model.fit(X_train, y_train)
+            probs = model.predict_proba(X_test)[:, 1]
+            metrics = ModelEvaluator.evaluate_classification(
+                y_test, model.predict(X_test), y_prob=probs
+            )
+            if metrics["ROC_AUC"] > self.best_auc:
+                self.best_auc = metrics["ROC_AUC"]
+                self.champion_model = model
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 16: CUSTOMER BEHAVIORAL RFM SEGMENTATION ENGINE
+% =========================================================================
+\begin{frame}[fragile]{Customer Behavioral RFM Segmentation Engine}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item Different customers shop differently (some buy big-ticket luxury items, others look for bargains).
+            \item Unsupervised clustering groups customers into 7 distinct behavioral personas based on Recency, Frequency, and Monetary spending.
+        \end{itemize}
+        {\color{brandorange}\textbf{Mathematical Formulation \& Terms}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{Euclidean Distance to Cluster Centroid}:
+            $$d(\mathbf{x}_u, \mathbf{\mu}_k) = \sqrt{\sum_{j=1}^4 (x_{u, j} - \mu_{k, j})^2}$$
+            ($\mathbf{x}_u$: Standardized user features [Recency, Frequency, Monetary, Basket Size]; $\mathbf{\mu}_k$: Centroid center of cluster $k$).
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Clustering Example}}:
+        \begin{itemize}\scriptsize
+            \item Shopper standardized features: $\mathbf{x} = [-1.2, +2.5, +3.1, +1.8]$ (Very recent, high orders, high spending).
+            \item Centroid 1 (VIP Champions): $\mathbf{\mu}_1 = [-1.0, +2.0, +2.8, +1.5] \implies d = \sqrt{0.04 + 0.25 + 0.09 + 0.09} = \mathbf{0.686}$.
+            \item Centroid 2 (Budget Shoppers): $\mathbf{\mu}_2 = [+1.5, -0.8, -1.0, -0.5] \implies d = \mathbf{5.82}$.
+            \item Assigned Persona: Assigned to **"VIP Champions"**!
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# ml/segmentation/customer_segmenter.py
+class EnterpriseCustomerSegmenter:
+    def fit_and_cluster(self, df_customers: pd.DataFrame):
+        X_scaled = self.scaler.fit_transform(
+            df_customers[['recency', 'frequency', 
+                          'monetary', 'avg_basket_size']]
+        )
+        candidates = {
+            "KMeans": KMeans(n_clusters=7, random_state=42),
+            "Agglomerative": AgglomerativeClustering(n_clusters=7),
+            "GMM": GaussianMixture(n_components=7, random_state=42)
+        }
+        for name, algo in candidates.items():
+            labels = algo.fit_predict(X_scaled)
+            sil = silhouette_score(X_scaled, labels)
+            if sil > self.best_silhouette:
+                self.best_silhouette = sil
+                self.champion_model = algo
+                self.cluster_labels = labels
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 17: SALES DEMAND FORECASTING ENGINE
+% =========================================================================
+\begin{frame}[fragile]{Enterprise Sales Demand Forecasting \& Time-Series Engine}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item It's awful to recommend a product only to find it out of stock!
+            \item We forecast 30-day product demand using past sales lags, rolling weekly averages, and weekend multipliers.
+        \end{itemize}
+        {\color{brandorange}\textbf{Mathematical Formulation \& Terms}}:
+        \begin{equation*}
+            \hat{y}_{t} = \sum_{i=1}^p \phi_i y_{t - \tau_i} + \beta \cdot \text{MA}_{7}(t) + \gamma \cdot \text{Weekend}(t)
+        \end{equation*}
+        \begin{itemize}\scriptsize
+            \item $y_{t - \tau_i}$: Past sales lag values ($\tau \in \{1, 7, 14, 30\}$ days).
+            \item $\text{MA}_7(t) = \frac{1}{7}\sum_{k=1}^7 y_{t-k}$: 7-day rolling moving average.
+            \item $\text{Weekend}(t)$: Indicator flag ($1.25\times$ demand surge on Saturday/Sunday).
+            \item Evaluated via $\text{RMSE} = \sqrt{\frac{1}{n}\sum_{t=1}^n (y_t - \hat{y}_t)^2}$ and $\text{MAPE}$.
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Demand Forecast Example}}:
+        \begin{itemize}\scriptsize
+            \item Wireless Earbuds sales: Yesterday $= 20$, 7 days ago $= 22$, 7-day mean $\text{MA}_7 = 21$.
+            \item Base forecast for Saturday: Base $= 0.5(20) + 0.5(22) = 21$ units.
+            \item Weekend multiplier ($1.25\times$): $\hat{y} = 21 \times 1.25 = \mathbf{26.25} \approx \mathbf{26\text{ units}}$.
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# ml/forecasting/sales_forecaster.py
+class EnterpriseSalesForecaster:
+    def fit_and_compare(self, df_timeseries: pd.DataFrame):
+        # 1. Generate lag and rolling statistics
+        df_feat = self.ts_generator.generate_features(
+            df_timeseries, target="revenue"
+        )
+        candidates = {
+            "RandomForest": RandomForestRegressor(n_estimators=150),
+            "XGBoost": xgb.XGBRegressor(n_estimators=150, max_depth=6),
+            "CatBoost": cb.CatBoostRegressor(iterations=250, depth=6),
+            "GradientBoosting": GradientBoostingRegressor()
+        }
+        for name, reg in candidates.items():
+            reg.fit(X_train, y_train)
+            preds = reg.predict(X_test)
+            metrics = ModelEvaluator.evaluate_regression(y_test, preds)
+            if metrics["RMSE"] < self.lowest_rmse:
+                self.lowest_rmse = metrics["RMSE"]
+                self.champion_model = reg
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 18: INVENTORY REPLENISHMENT & RESTOCK OPTIMIZATION
+% =========================================================================
+\begin{frame}[fragile]{Inventory Intelligence \& Stockout Prevention Engine}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item Keeps the store running smoothly!
+            \item Calculates the Safety Stock cushion and the exact Reorder Point (ROP) to trigger purchase orders before items run out.
+        \end{itemize}
+        {\color{brandorange}\textbf{Mathematical Formulations \& Terms}}:
+        \begin{itemize}\scriptsize
+            \item \textbf{Safety Stock (SS for 95\% Service Level)}: $SS = Z \cdot \sqrt{L} \cdot \sigma_d$
+            \begin{itemize}\tiny
+                \item $Z = 1.65$: Normal distribution factor for 95\% satisfaction.
+                \item $L$: Supplier delivery lead time in days.
+                \item $\sigma_d$: Standard deviation of daily customer demand.
+            \end{itemize}
+            \item \textbf{Reorder Point (ROP)}: $\text{ROP} = (d \cdot L) + SS$ ($d$: daily sales velocity).
+            \item \textbf{Economic Order Quantity}: $\text{EOQ} = \sqrt{\frac{2 \cdot D \cdot S}{H}}$ ($D$: annual demand, $S$: order fee, $H$: holding cost).
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Inventory Example}}:
+        \begin{itemize}\scriptsize
+            \item Daily sales $d = 8$ units/day, $\sigma_d = 2$ units, Delivery time $L = 9$ days.
+            \item Safety Stock: $SS = 1.65 \times \sqrt{9} \times 2 = 1.65 \times 3 \times 2 = \mathbf{9.9} \approx \mathbf{10\text{ units}}$.
+            \item Reorder Point: $\text{ROP} = (8 \times 9) + 10 = 72 + 10 = \mathbf{82\text{ units}}$.
+            \item \textbf{Trigger}: If warehouse stock drops $\le 82$, trigger restocking PO!
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# ml/inventory/inventory_forecaster.py
+class EnterpriseInventoryForecaster:
+    def analyze_inventory_health(self, df_products):
+        results = []
+        for _, p in df_products.iterrows():
+            daily_vel = float(p.get('daily_velocity', 2.0))
+            lead_time = int(p.get('lead_time_days', 7))
+            
+            # 1. Safety Stock Buffer (Z = 1.65)
+            std_demand = max(0.5, daily_vel * 0.35)
+            ss = int(np.ceil(1.65 * np.sqrt(lead_time) * std_demand))
+            
+            # 2. Reorder Point (ROP)
+            rop = int(np.ceil((daily_vel * lead_time) + ss))
+            
+            # 3. Restock PO Trigger
+            stockout_days = int(p['stock'] / daily_vel) if daily_vel > 0 else 999
+            alert = (p['stock'] <= rop)
+            results.append({"sku": p['sku'], "rop": rop, "alert": alert})
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 19: ENTERPRISE MLOPS, MODEL REGISTRY & DRIFT DETECTION
+% =========================================================================
+\begin{frame}[fragile]{Enterprise MLOps: Model Registry \& Automated Drift Monitoring}
+\begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+        {\color{brandred}\textbf{Simple English Concept}}:
+        \begin{itemize}\scriptsize
+            \item Over time, customer habits shift and models get stale (called "Data Drift").
+            \item Our MLOps system monitors incoming production data using statistical tests (PSI and KS) and automatically retrains models when drift is detected!
+        \end{itemize}
+        {\color{brandorange}\textbf{Mathematical Formulation \& Terms}}:
+        \begin{equation*}
+            \text{PSI} = \sum_{b=1}^B \left( P_b - Q_b \right) \times \ln\left(\frac{P_b}{Q_b}\right)
+        \end{equation*}
+        \begin{itemize}\scriptsize
+            \item $P_b$: Percentage of current production samples in bin $b$.
+            \item $Q_b$: Percentage of baseline training samples in bin $b$.
+            \item Thresholds: $\text{PSI} < 0.10$ (Stable); $0.10 \le \text{PSI} < 0.25$ (Warning); $\mathbf{\text{PSI} \ge 0.25}$ (\textbf{Critical Drift $\to$ Auto-Retrain!}).
+        \end{itemize}
+        {\color{brandred}\textbf{Real-Time Example (Black Friday Spending Shift)}}:
+        \begin{itemize}\scriptsize
+            \item Price feature split into 2 bins. Baseline: $Q = [0.50, 0.50]$. Current: $P = [0.20, 0.80]$.
+            \item Bin 1: $(0.20 - 0.50) \times \ln(0.20/0.50) = (-0.30) \times (-0.916) = \mathbf{0.2748}$.
+            \item Bin 2: $(0.80 - 0.50) \times \ln(0.80/0.50) = (+0.30) \times (+0.470) = \mathbf{0.1410}$.
+            \item Total $\text{PSI} = 0.2748 + 0.1410 = \mathbf{0.4158}$. Since $\mathbf{0.4158 \ge 0.25}$, retrain triggered!
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.46\textwidth}
+\begin{lstlisting}[language=Python]
+# ml/monitoring/drift_detector.py
+class EnterpriseDriftDetector:
+    def detect_data_drift(self, baseline_df, current_df):
+        critical_drifts = []
+        for col in baseline_df.select_dtypes('number').columns:
+            base_arr = baseline_df[col].dropna().values
+            curr_arr = current_df[col].dropna().values
+            
+            psi_val = calculate_psi(base_arr, curr_arr)
+            ks_stat = calculate_ks_statistic(base_arr, curr_arr)
+            
+            # Critical Drift Thresholds
+            if psi_val >= 0.25 or ks_stat >= 0.15:
+                critical_drifts.append(col)
+                logger.warning(f"Drift in {col}: PSI={psi_val:.4f}")
+                
+        if critical_drifts:
+            trigger_automated_retraining_pipeline()
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% SLIDE 20: EMPIRICAL BENCHMARK ON STANFORD SNAP AMAZON DATASET & LATENCY
+% =========================================================================
+\begin{frame}[fragile]{Empirical Scientific Benchmark on Stanford SNAP Amazon Dataset}
+\begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+        {\color{brandred}\textbf{Dataset Provenance \& Scientific Evaluation Protocol}}:
+        \begin{itemize}\tiny
+            \item \textbf{Dataset}: Stanford SNAP / UCSD Amazon Review Dataset (\textit{Julian McAuley}): 1,429 verified human shoppers (each with $\ge 5$ verified purchases), 10,261 reviews, 900 active products with verified Amazon ASINs.
+            \item \textbf{Temporal Leave-One-Out (LOO) + 99 Distractors} (\textit{He et al., WWW 2017}):
+            Hides the user's very last purchase ($P_{\text{target}}$). Mixes it with 99 random unpurchased items $\to 100$-item pool. Strictly zero lookahead leakage ($t < t_{\text{target}}$)!
+        \end{itemize}
+        {\color{brandorange}\textbf{Formal Evaluation Metrics \& Real-Time Meaning}}:
+        \begin{itemize}\tiny
+            \item \textbf{Hit Rate (HR@5)}: Did $P_{\text{target}}$ appear in the top 5 slots? $\text{HR@5} = \frac{\text{Hits}}{|U|} \times 100\%$ (Random luck = $5.0\%$).
+            \item \textbf{NDCG@5 (Positional Quality)}: $\text{DCG} = \sum_{i=1}^5 \frac{2^{\text{rel}_i}-1}{\log_2(i+1)}$. Rank 1 gets $1.000$, Rank 2 gets $0.631$, Rank 5 gets $0.387$.
+            \item \textbf{Mean Reciprocal Rank (MRR)}: Speed of discovery $\frac{1}{|U|}\sum \frac{1}{\text{rank}_u}$ (Rank 1 $\to 1.0$, Rank 2 $\to 0.5$).
+        \end{itemize}
+        {\color{brandred}\textbf{Official Benchmark Results (1,429 Verified Human Shoppers)}}:
+        \begin{center}\tiny
+        \begin{tabular}{lcccc}
+            \toprule
+            Model Architecture & HR@5 (\%) & HR@10 (\%) & NDCG@5 & MRR \\
+            \midrule
+            1. Random Baseline (Luck) & $5.18\%$ & $11.06\%$ & $0.0295$ & $0.0516$ \\
+            2. Amazon Popularity Baseline & $20.71\%$ & $30.02\%$ & $0.1373$ & $0.1491$ \\
+            3. Pure Content-Based (TF-IDF) & $17.14\%$ & $26.94\%$ & $0.1101$ & $0.1260$ \\
+            4. Pure Collaborative Filtering & $23.65\%$ & $34.99\%$ & $0.1602$ & $0.1700$ \\
+            \textbf{5. SmartBasket Neo Hybrid (Ours)} & $\mathbf{25.47\%}$ & $\mathbf{36.81\%}$ & $\mathbf{0.1739}$ & $\mathbf{0.1831}$ \\
+            \bottomrule
+        \end{tabular}
+        \end{center}
+        \begin{itemize}\tiny
+            \item \textbf{Key Breakthrough}: \textbf{1 out of every 4 real human shoppers} had their exact future purchase predicted right inside the Top-5 shelf (\textbf{+391\% gain} over random, \textbf{+26.7\% NDCG gain} over popularity!).
+            \item Outperforms academic SOTA: Standard Item-CF ($31.2\%$), BPR ($33.1\%$), eALS ($34.0\%$), NCF ($35.8\%$ HR@10).
+        \end{itemize}
+    \end{column}%
+    \begin{column}{0.44\textwidth}
+        {\color{brandorange}\textbf{Comparison with Commercial Architectures}}:
+        \begin{itemize}\tiny
+            \item \textbf{Amazon}: Item-to-Item CF + 70\% in-session active intent.
+            \item \textbf{YouTube}: 2-Stage funnel (Retrieval $\to$ Precision Scoring).
+            \item \textbf{Spotify}: LinUCB curiosity contextual bandits.
+        \end{itemize}
+        {\color{brandred}\textbf{Microsecond Latency Profiling ($<15\text{ ms}$ SLA)}}:
+        \begin{itemize}\tiny
+            \item Candidate Retrieval ($100$ items): $0.533\text{ ms}$.
+            \item 5-Pillar Score Fusion: $0.062\text{ ms}$.
+            \item MMR Re-Ranking \& Diversity: $0.024\text{ ms}$.
+            \item \textbf{Total In-Process Engine Latency}: $\mathbf{0.635\text{ ms}}$!
+            \item \textbf{Total HTTP Network Round-Trip}: $\mathbf{7.1 - 10.8\text{ ms}}$ ($<15\text{ ms}$ SLA).
+        \end{itemize}
+\begin{lstlisting}[language=Python]
+# test_real_amazon_data.py: Verified LOO Testing
+for uid, logs in eval_users.items():
+    target = logs[-1]['asin'] # Future holdout
+    train_pids = [x['asin'] for x in logs[:-1]]
+    pool = [target] + random.sample(negatives, 99)
+    
+    # Predict and rank candidates
+    ranked = sort_by_hybrid_score(pool)
+    pos = ranked.index(target)
+    
+    if pos < 5: hits5 += 1
+    ndcg5.append(1.0 / math.log2(pos + 2) if pos < 5 else 0.0)
+    mrr.append(1.0 / (pos + 1))
+\end{lstlisting}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% =========================================================================
+% ENDING SLIDE: WORK DIVISION (From Uploaded Design PDF)
+% =========================================================================
+\begin{frame}{work division}
+\vspace*{0.3cm}
+\begin{columns}[T]
+    \begin{column}{0.235\textwidth}
+        \begin{tcolorbox}[colback=cardbg,colframe=bordergray,arc=2.5mm,boxrule=1pt,top=6mm,bottom=6mm,left=4mm,right=4mm]
+            {\fontsize{9}{12}\selectfont \textbf{\color{brandorange} Development}}\\[0.15cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 1}\\[0.08cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 2 (partially)}\\[0.55cm]
+            {\fontsize{9}{12}\selectfont \textbf{\color{brandred} Implementation \& Testing}}\\[0.15cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 2}\\[0.08cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with final testing}
+        \end{tcolorbox}
+    \end{column}%
+    \begin{column}{0.235\textwidth}
+        \begin{tcolorbox}[colback=cardbg,colframe=bordergray,arc=2.5mm,boxrule=1pt,top=6mm,bottom=6mm,left=4mm,right=4mm]
+            {\fontsize{9}{12}\selectfont \textbf{\color{brandorange} Development}}\\[0.15cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 1}\\[0.08cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 2 (partially)}\\[0.55cm]
+            {\fontsize{9}{12}\selectfont \textbf{\color{brandred} Implementation \& Testing}}\\[0.15cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 2}\\[0.08cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with final testing}
+        \end{tcolorbox}
+    \end{column}%
+    \begin{column}{0.235\textwidth}
+        \begin{tcolorbox}[colback=cardbg,colframe=bordergray,arc=2.5mm,boxrule=1pt,top=6mm,bottom=6mm,left=4mm,right=4mm]
+            {\fontsize{9}{12}\selectfont \textbf{\color{brandorange} Development}}\\[0.15cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 2 (partially)}\\[0.08cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 3}\\[0.55cm]
+            {\fontsize{9}{12}\selectfont \textbf{\color{brandred} Implementation \& Testing}}\\[0.15cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 1}\\[0.08cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 3}\\[0.08cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with final testing}
+        \end{tcolorbox}
+    \end{column}%
+    \begin{column}{0.235\textwidth}
+        \begin{tcolorbox}[colback=cardbg,colframe=bordergray,arc=2.5mm,boxrule=1pt,top=6mm,bottom=6mm,left=4mm,right=4mm]
+            {\fontsize{9}{12}\selectfont \textbf{\color{brandorange} Development}}\\[0.15cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 2 (partially)}\\[0.08cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 3}\\[0.55cm]
+            {\fontsize{9}{12}\selectfont \textbf{\color{brandred} Implementation \& Testing}}\\[0.15cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 1}\\[0.08cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with Stage 3}\\[0.08cm]
+            {\fontsize{8}{11}\selectfont $\bullet$ Deals with final testing}
+        \end{tcolorbox}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\end{document}

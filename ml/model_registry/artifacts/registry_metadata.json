@@ -1,0 +1,312 @@
+{
+  "project": "Amazon-AI-Retail-Intelligence",
+  "created_at": "2026-07-05T11:20:45.191855",
+  "models": {
+    "SalesForecaster_revenue": [
+      {
+        "model_name": "SalesForecaster_revenue",
+        "version": "v1.0.0",
+        "stage": "Archived",
+        "training_date": "2026-07-05T11:21:04.907011",
+        "metrics": {
+          "MAE": 771.906,
+          "MSE": 1024378.0461,
+          "RMSE": 1012.1156,
+          "R2": 0.9283,
+          "MAPE": 3.69,
+          "Adjusted_R2": 0.9071
+        },
+        "hyperparameters": {
+          "algorithm": "LinearRegression",
+          "features_count": 33
+        },
+        "dataset_version": "v1.0",
+        "artifact_path": "D:\\aimlproject\\ml\\model_registry\\artifacts\\SalesForecaster_revenue_v1.0.0.pkl"
+      },
+      {
+        "model_name": "SalesForecaster_revenue",
+        "version": "v2.0.0",
+        "stage": "Archived",
+        "training_date": "2026-07-05T11:27:11.182881",
+        "metrics": {
+          "MAE": 0.045,
+          "MSE": 0.0031,
+          "RMSE": 0.0554,
+          "R2": 1.0,
+          "MAPE": 0.0,
+          "Adjusted_R2": 1.0
+        },
+        "hyperparameters": {
+          "algorithm": "LinearRegression",
+          "features_count": 31
+        },
+        "dataset_version": "v1.0",
+        "artifact_path": "D:\\aimlproject\\ml\\model_registry\\artifacts\\SalesForecaster_revenue_v2.0.0.pkl"
+      },
+      {
+        "model_name": "SalesForecaster_revenue",
+        "version": "v3.0.0",
+        "stage": "Archived",
+        "training_date": "2026-07-05T11:29:00.110503",
+        "metrics": {
+          "MAE": 838.661,
+          "MSE": 1120111.9868,
+          "RMSE": 1058.3534,
+          "R2": 0.9207,
+          "MAPE": 3.97,
+          "Adjusted_R2": 0.8973
+        },
+        "hyperparameters": {
+          "algorithm": "LinearRegression",
+          "features_count": 33
+        },
+        "dataset_version": "v1.0",
+        "artifact_path": "D:\\aimlproject\\ml\\model_registry\\artifacts\\SalesForecaster_revenue_v3.0.0.pkl"
+      },
+      {
+        "model_name": "SalesForecaster_revenue",
+        "version": "v4.0.0",
+        "stage": "Archived",
+        "training_date": "2026-07-05T11:39:00.934666",
+        "metrics": {
+          "MAE": 724.0235,
+          "MSE": 1060843.2367,
+          "RMSE": 1029.9724,
+          "R2": 0.9219,
+          "MAPE": 3.29,
+          "Adjusted_R2": 0.8989
+        },
+        "hyperparameters": {
+          "algorithm": "LightGBM",
+          "features_count": 33
+        },
+        "dataset_version": "v1.0",
+        "artifact_path": "D:\\aimlproject\\ml\\model_registry\\artifacts\\SalesForecaster_revenue_v4.0.0.pkl"
+      },
+      {
+        "model_name": "SalesForecaster_revenue",
+        "version": "v5.0.0",
+        "stage": "Production",
+        "training_date": "2026-07-05T11:41:08.406814",
+        "metrics": {
+          "MAE": 0.045,
+          "MSE": 0.0031,
+          "RMSE": 0.0554,
+          "R2": 1.0,
+          "MAPE": 0.0,
+          "Adjusted_R2": 1.0
+        },
+        "hyperparameters": {
+          "algorithm": "LinearRegression",
+          "features_count": 31
+        },
+        "dataset_version": "v1.0",
+        "artifact_path": "D:\\aimlproject\\ml\\model_registry\\artifacts\\SalesForecaster_revenue_v5.0.0.pkl"
+      }
+    ],
+    "CustomerChurnPredictor": [
+      {
+        "model_name": "CustomerChurnPredictor",
+        "version": "v1.0.0",
+        "stage": "Archived",
+        "training_date": "2026-07-05T11:21:17.600174",
+        "metrics": {
+          "Accuracy": 0.834,
+          "Precision": 0.8321,
+          "Recall": 0.834,
+          "F1_Score": 0.8275,
+          "ROC_AUC": 0.8476,
+          "PR_AUC": 0.7593,
+          "Confusion_Matrix": [
+            [
+              316,
+              23
+            ],
+            [
+              60,
+              101
+            ]
+          ]
+        },
+        "hyperparameters": {
+          "algorithm": "LogisticRegression",
+          "features_count": 8
+        },
+        "dataset_version": "v1.0",
+        "artifact_path": "D:\\aimlproject\\ml\\model_registry\\artifacts\\CustomerChurnPredictor_v1.0.0.pkl"
+      },
+      {
+        "model_name": "CustomerChurnPredictor",
+        "version": "v2.0.0",
+        "stage": "Archived",
+        "training_date": "2026-07-05T11:27:16.090106",
+        "metrics": {
+          "Accuracy": 0.834,
+          "Precision": 0.8321,
+          "Recall": 0.834,
+          "F1_Score": 0.8275,
+          "ROC_AUC": 0.8476,
+          "PR_AUC": 0.7593,
+          "Confusion_Matrix": [
+            [
+              316,
+              23
+            ],
+            [
+              60,
+              101
+            ]
+          ]
+        },
+        "hyperparameters": {
+          "algorithm": "LogisticRegression",
+          "features_count": 8
+        },
+        "dataset_version": "v1.0",
+        "artifact_path": "D:\\aimlproject\\ml\\model_registry\\artifacts\\CustomerChurnPredictor_v2.0.0.pkl"
+      },
+      {
+        "model_name": "CustomerChurnPredictor",
+        "version": "v3.0.0",
+        "stage": "Archived",
+        "training_date": "2026-07-05T11:29:03.180286",
+        "metrics": {
+          "Accuracy": 0.834,
+          "Precision": 0.8321,
+          "Recall": 0.834,
+          "F1_Score": 0.8275,
+          "ROC_AUC": 0.8476,
+          "PR_AUC": 0.7593,
+          "Confusion_Matrix": [
+            [
+              316,
+              23
+            ],
+            [
+              60,
+              101
+            ]
+          ]
+        },
+        "hyperparameters": {
+          "algorithm": "LogisticRegression",
+          "features_count": 8
+        },
+        "dataset_version": "v1.0",
+        "artifact_path": "D:\\aimlproject\\ml\\model_registry\\artifacts\\CustomerChurnPredictor_v3.0.0.pkl"
+      },
+      {
+        "model_name": "CustomerChurnPredictor",
+        "version": "v4.0.0",
+        "stage": "Archived",
+        "training_date": "2026-07-05T11:39:04.813301",
+        "metrics": {
+          "Accuracy": 0.834,
+          "Precision": 0.8321,
+          "Recall": 0.834,
+          "F1_Score": 0.8275,
+          "ROC_AUC": 0.8476,
+          "PR_AUC": 0.7593,
+          "Confusion_Matrix": [
+            [
+              316,
+              23
+            ],
+            [
+              60,
+              101
+            ]
+          ]
+        },
+        "hyperparameters": {
+          "algorithm": "LogisticRegression",
+          "features_count": 8
+        },
+        "dataset_version": "v1.0",
+        "artifact_path": "D:\\aimlproject\\ml\\model_registry\\artifacts\\CustomerChurnPredictor_v4.0.0.pkl"
+      },
+      {
+        "model_name": "CustomerChurnPredictor",
+        "version": "v5.0.0",
+        "stage": "Production",
+        "training_date": "2026-07-05T11:41:11.654657",
+        "metrics": {
+          "Accuracy": 0.834,
+          "Precision": 0.8321,
+          "Recall": 0.834,
+          "F1_Score": 0.8275,
+          "ROC_AUC": 0.8476,
+          "PR_AUC": 0.7593,
+          "Confusion_Matrix": [
+            [
+              316,
+              23
+            ],
+            [
+              60,
+              101
+            ]
+          ]
+        },
+        "hyperparameters": {
+          "algorithm": "LogisticRegression",
+          "features_count": 8
+        },
+        "dataset_version": "v1.0",
+        "artifact_path": "D:\\aimlproject\\ml\\model_registry\\artifacts\\CustomerChurnPredictor_v5.0.0.pkl"
+      }
+    ]
+  },
+  "production_champions": {
+    "SalesForecaster_revenue": {
+      "model_name": "SalesForecaster_revenue",
+      "version": "v5.0.0",
+      "stage": "Production",
+      "training_date": "2026-07-05T11:41:08.406814",
+      "metrics": {
+        "MAE": 0.045,
+        "MSE": 0.0031,
+        "RMSE": 0.0554,
+        "R2": 1.0,
+        "MAPE": 0.0,
+        "Adjusted_R2": 1.0
+      },
+      "hyperparameters": {
+        "algorithm": "LinearRegression",
+        "features_count": 31
+      },
+      "dataset_version": "v1.0",
+      "artifact_path": "D:\\aimlproject\\ml\\model_registry\\artifacts\\SalesForecaster_revenue_v5.0.0.pkl"
+    },
+    "CustomerChurnPredictor": {
+      "model_name": "CustomerChurnPredictor",
+      "version": "v5.0.0",
+      "stage": "Production",
+      "training_date": "2026-07-05T11:41:11.654657",
+      "metrics": {
+        "Accuracy": 0.834,
+        "Precision": 0.8321,
+        "Recall": 0.834,
+        "F1_Score": 0.8275,
+        "ROC_AUC": 0.8476,
+        "PR_AUC": 0.7593,
+        "Confusion_Matrix": [
+          [
+            316,
+            23
+          ],
+          [
+            60,
+            101
+          ]
+        ]
+      },
+      "hyperparameters": {
+        "algorithm": "LogisticRegression",
+        "features_count": 8
+      },
+      "dataset_version": "v1.0",
+      "artifact_path": "D:\\aimlproject\\ml\\model_registry\\artifacts\\CustomerChurnPredictor_v5.0.0.pkl"
+    }
+  }
+}

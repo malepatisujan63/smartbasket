@@ -1,0 +1,44 @@
+{
+  "dataset": "Stanford SNAP Amazon Musical Instruments 5-Core",
+  "eval_users": 1429,
+  "eval_products": 900,
+  "protocol": "LOO with 99 Distractor Negatives",
+  "summary": {
+    "1. Random Baseline": {
+      "HR@5": 5.18,
+      "HR@10": 11.06,
+      "NDCG@5": 0.0295,
+      "NDCG@10": 0.0482,
+      "MRR": 0.0516
+    },
+    "2. Popularity Baseline": {
+      "HR@5": 20.71,
+      "HR@10": 30.02,
+      "NDCG@5": 0.1373,
+      "NDCG@10": 0.1671,
+      "MRR": 0.1491
+    },
+    "3. Pure Content-Based": {
+      "HR@5": 17.14,
+      "HR@10": 26.94,
+      "NDCG@5": 0.1101,
+      "NDCG@10": 0.1416,
+      "MRR": 0.126
+    },
+    "4. Pure Collaborative (CF)": {
+      "HR@5": 23.65,
+      "HR@10": 34.99,
+      "NDCG@5": 0.1602,
+      "NDCG@10": 0.1967,
+      "MRR": 0.17
+    },
+    "5. Tuned Hybrid (SmartBasket)": {
+      "HR@5": 25.47,
+      "HR@10": 36.81,
+      "NDCG@5": 0.1739,
+      "NDCG@10": 0.2104,
+      "MRR": 0.1831
+    }
+  },
+  "category_relevance": 46.7
+}

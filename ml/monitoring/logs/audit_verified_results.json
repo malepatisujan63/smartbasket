@@ -1,0 +1,56 @@
+{
+  "verified": true,
+  "n_users": 1429,
+  "catalog_size": 900,
+  "results": {
+    "1. Random Baseline": {
+      "HR@5": 5.18,
+      "HR@10": 11.06,
+      "NDCG@5": 0.0295,
+      "NDCG@10": 0.0482,
+      "MRR": 0.0516
+    },
+    "2. Popularity Baseline": {
+      "HR@5": 19.73,
+      "HR@10": 27.5,
+      "NDCG@5": 0.1299,
+      "NDCG@10": 0.1547,
+      "MRR": 0.1377
+    },
+    "3. Pure Content (TF-IDF)": {
+      "HR@5": 17.42,
+      "HR@10": 29.04,
+      "NDCG@5": 0.1132,
+      "NDCG@10": 0.1505,
+      "MRR": 0.1315
+    },
+    "4. Pure Collaborative (CF)": {
+      "HR@5": 20.64,
+      "HR@10": 31.14,
+      "NDCG@5": 0.1236,
+      "NDCG@10": 0.1571,
+      "MRR": 0.1318
+    },
+    "5. EXACT 5-PILLAR HYBRID": {
+      "HR@5": 19.87,
+      "HR@10": 32.54,
+      "NDCG@5": 0.1348,
+      "NDCG@10": 0.1757,
+      "MRR": 0.1546
+    },
+    "6. 5-PILLAR + RE-RANKING (MMR+Bandit)": {
+      "HR@5": 21.34,
+      "HR@10": 34.22,
+      "NDCG@5": 0.1411,
+      "NDCG@10": 0.1822,
+      "MRR": 0.1567
+    }
+  },
+  "latency_benchmark": {
+    "avg_retrieval_ms": 0.0,
+    "avg_scoring_ms": 0.337,
+    "avg_reranking_ms": 0.045,
+    "avg_total_ms": 0.382,
+    "p95_total_ms": 0.64
+  }
+}

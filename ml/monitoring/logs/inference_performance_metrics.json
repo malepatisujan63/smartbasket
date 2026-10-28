@@ -1,0 +1,54 @@
+{
+  "total_inferences": 44,
+  "cache_hits": 3,
+  "endpoint_metrics": {
+    "/predict/recommendation": {
+      "count": 8,
+      "total_latency_ms": 8880.32,
+      "avg_latency_ms": 1110.04,
+      "max_latency_ms": 8874.55,
+      "errors_count": 0,
+      "last_updated": "2026-07-05T11:39:04.997582"
+    },
+    "/predict/sales": {
+      "count": 8,
+      "total_latency_ms": 2020.05,
+      "avg_latency_ms": 252.51,
+      "max_latency_ms": 1246.92,
+      "errors_count": 4,
+      "last_updated": "2026-07-05T11:39:05.210217"
+    },
+    "/predict/inventory": {
+      "count": 8,
+      "total_latency_ms": 661.11,
+      "avg_latency_ms": 82.64,
+      "max_latency_ms": 123.38,
+      "errors_count": 0,
+      "last_updated": "2026-07-05T11:39:05.277286"
+    },
+    "/predict/segmentation": {
+      "count": 7,
+      "total_latency_ms": 21625.0,
+      "avg_latency_ms": 3089.29,
+      "max_latency_ms": 6110.69,
+      "errors_count": 4,
+      "last_updated": "2026-07-05T11:39:07.233734"
+    },
+    "/predict/churn": {
+      "count": 8,
+      "total_latency_ms": 153.97,
+      "avg_latency_ms": 19.25,
+      "max_latency_ms": 48.92,
+      "errors_count": 4,
+      "last_updated": "2026-07-05T11:39:07.287772"
+    },
+    "/predict/trending": {
+      "count": 5,
+      "total_latency_ms": 1.01,
+      "avg_latency_ms": 0.2,
+      "max_latency_ms": 0.3,
+      "errors_count": 0,
+      "last_updated": "2026-07-05T11:29:05.298017"
+    }
+  }
+}
